@@ -1,0 +1,7 @@
+syntax: glob
+
+*.swp
+*.swo
+*~
+_site
+.sass-cache
