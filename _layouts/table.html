@@ -1,0 +1,29 @@
+---
+---
+
+<td>{{ index }}.</td>
+<td>{{ entry.title }}</td>
+<td>печатный</td>
+<td>
+	{{ entry.journal }}
+	{{ entry.booktitle }},
+	{% if entry.volume and entry.number %}
+		Том {{ entry.volume }}({{ entry.number }}),
+	{% elsif entry.volume %}
+		Том {{ entry.volume }},
+	{% elsif entry.number %}
+		№ {{ entry.number }},
+	{% endif %}
+	{{ entry.year }}
+</td>
+{% if entry.pages %}
+{% assign pp = entry.pages | split:"–" %}
+{% if pp[1] %}
+<td>{{ pp[1] | minus:pp[0] }}</td>
+{% else %}
+<td>1</td>
+{% endif %}
+{% else %}
+<td></td>
+{% endif %}
+<td>{{ entry.author | replace: ',','' | replace: 'and',', ' }}</td>

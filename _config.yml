@@ -14,5 +14,7 @@ github_username:  jekyll
 markdown: kramdown
 
 scholar:
+  bibliography_list_tag: "table"
+  bibliography_item_tag: "tr"
   bibtex_options:
     strip: false
