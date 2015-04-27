@@ -16,9 +16,11 @@ markdown: kramdown
 sass:
   style: :compressed
 
+#  bibliography_list_tag: "table"
+#  bibliography_item_tag: "tr"
+
 scholar:
-  bibliography_list_tag: "table"
-  bibliography_item_tag: "tr"
+  style: gost-r-7-0-5-2008-no-citation-number
   bibtex_options:
     strip: false
 
