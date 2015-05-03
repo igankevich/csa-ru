@@ -1,0 +1,39 @@
+---
+layout: page
+title: Bibliography
+permalink: /bibliography/
+---
+
+<script>
+$(function() { $("#tabs").tabs() })
+</script>
+<div id="tabs">
+	<ul>
+		<li><a href="#inproceedings">Proceedings</a></li>
+		<li><a href="#article">Journals</a></li>
+		<li><a href="#incollection">Books</a></li>
+		<li><a href="#misc">Misc</a></li>
+		<li><a href="#all">Everything</a></li>
+	</ul>
+{% assign max_year = site.time | date: '%Y' %}
+{% assign types = "inproceedings article incollection misc all" | split: ' ' %}
+{% for type in types %}
+	<div id="{{ type }}">
+	{% if type == "all" %}
+		{% assign tp = "*" %}
+	{% else %}
+		{% assign tp = type %}
+	{% endif %}
+	{% for year in (site.data.bib.min_year..max_year) reversed %}
+		{% capture items %}
+			{% bibliography --file all --query @{{tp}}[year={{year}}] %}
+		{% endcapture %}
+		{% assign str = items | split: '<li>' %}
+		{% if str[1] %}
+			{{ year }}
+			{{ items }}
+		{% endif %}
+	{% endfor %}
+	</div>
+{% endfor %}
+</div>
