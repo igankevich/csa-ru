@@ -1,0 +1,46 @@
+<html>
+<head>
+<link href="images/ch.css" rel=stylesheet type=text/css>
+<META content="text/html; charset=windows-1251" http-equiv=Content-Type>
+<title>бДНЙОЙУФТЙТПЧБОЙЕ ЖПТХНБ</title>
+<!-- Main dropdown code -->
+<SCRIPT language=JavaScript>
+
+function sendform() {
+
+if (document.MyForm.name.value == "") {
+    alert('рПЦБМХКУФБ, ЧЧЕДЙФЕ чБЫЕ ЙНС');
+    document.MyForm.name.focus();
+    return false;
+    }
+
+if (document.MyForm.email.value == "") {
+    alert('рПЦБМХКУФБ, ЧЧЕДЙФЕ чБЫ ЬМЕЛФТПООЩК БДТЕУ');
+    document.MyForm.email.focus();
+    return false;
+    }
+if (document.MyForm.theme.value == "") {
+    alert('рПЦБМХКУФБ, ХЛБЦЙФЕ ФЕНХ');
+    document.MyForm.theme.focus();
+    return false;
+    }
+if (document.MyForm.text.value == "") {
+    alert('рПЦБМХКУФБ, ОБРЙЫЙФЕ ЮФП-ОЙВХДШ');
+    document.MyForm.text.focus();
+    return false;
+    }
+return true;
+}
+
+//-->
+</SCRIPT>
+
+</head>
+
+<body style="MARGIN: 0px" text=#000000 vLink=#666666 aLink=#ff0000 link=#003399 
+bgColor=#ffffff MARGINHEIGHT="0" MARGINWIDTH="0">
+<center>
+<a class=forum_small href="../index.html">дЕФУЛБС РБФПРУЙИПМПЗЙС</a>
+<br><p>
+<table width="750" cellspacing="0" cellpadding="0" border="0" bordercolor="Black">
+<tr>

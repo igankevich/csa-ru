@@ -1,0 +1,50 @@
+
+<!-- File q_43.html  -->
+<!-- Текст от 24.09.2001 (с оглавлением) -->
+<!--   =========================  --> 
+<!--  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+<h2>Рекурсивный алгоритм</h2>
+Еще один способ умножения матриц: умножение подматриц и суммирование
+<br>
+<br>
+<img src="10_8.gif" border=5 align="top" alt="ris_10_8">
+<br>
+Рекурсивная подпрограмма на языке C++:
+<code>
+<br>mat_mult(A_pp,B_pp,s)
+<br>{
+<br>if(s= =1)
+<br>C=A*B;
+<br>else {
+<br>s=s/2;
+<br>P0=mat_mult(A_pp,B_pp,s);
+<br>P1=mat_mult(A_pq,B_qp,s);
+<br>P2=mat_mult(A_pp,B_pq,s);
+<br>P3=mat_mult(A_pq,B_qq,s);
+<br>P4=mat_mult(A_qp,B_pp,s);
+<br>P5=mat_mult(A_qq,B_qp,s);
+<br>P6=mat_mult(A_qp,B_pq,s);
+<br>P7=mat_mult(A_qq,B_qq,s);
+<br>C_pp=P0+P1;
+<br>C_pp=P2+P3;
+<br>C_pp=P4+P5;
+<br>C_pp=P6+P7;
+<br>}
+<br>return C;
+<br> }
+</code>
+
+<br>Существуют и другие алгоритмы распараллеливания задачи матричного умножения. 
+При разных архитектурах суперкомпьютеров наиболее эффективные алгоритмы могут оказаться различными.
+<br>
+<br>
+<a href="q_42.html"><img src="left.gif" alt="left"></a>
+<a href="q_start.html"><img src="up.gif" alt="up"></a>
+<a href="q_44.html"><img src="right.gif" alt="right"></a>
+<a href="q_42.html">[Назад]</a>
+<a href="q_start.html">[Оглавление]</a>
+<a href="q_44.html">[Вперед]</a>
+<!--  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+<hr>
+<address>Последнее обновление 21.11.2001 <a href="mailto:meri@fn.csa.ru">WebMaster</a></address>
+
