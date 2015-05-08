@@ -24,6 +24,21 @@
           {% endif %}
         {% endfor %}
       </div>
+		<ul class="languages">
+			{% for lang in site.languages %}
+				{% if forloop.first %}
+					{% assign prefix = "" %}
+				{% else %}
+					{% assign prefix = lang | prepend: "/" %}
+				{% endif %}
+				{% if lang == site.lang %}
+					{% assign url = "#" %}
+				{% else %}
+					{% capture url %}{{ site.baseurl_root }}{{ prefix }}{{ page.url }}{% endcapture %}
+				{% endif %}
+				<li class="lang"><a href="{{ url }}">{{ lang }}</a></li>
+			{% endfor %}
+		</ul>
     </nav>
 
   </div>
