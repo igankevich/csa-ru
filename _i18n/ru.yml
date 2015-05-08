@@ -1,3 +1,5 @@
+global:
+  language: Язык
 titles:
   books: Учебные пособия
   about: О нас

@@ -41,6 +41,10 @@
         }
     }
 
+	.trigger {
+		display: inline-block;
+	}
+
     @include media-query($on-palm) {
         position: absolute;
         top: 9px;
@@ -75,7 +79,7 @@
         }
 
         &:hover .trigger {
-            display: block;
+            display: inline-block;
             padding-bottom: 5px;
         }
 

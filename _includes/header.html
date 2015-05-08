@@ -25,6 +25,7 @@
         {% endfor %}
       </div>
 		<ul class="languages">
+			<li class="lang">{% t global.language %}:</li>
 			{% for lang in site.languages %}
 				{% if forloop.first %}
 					{% assign prefix = "" %}

@@ -453,7 +453,7 @@ button.ui-button::-moz-focus-inner {
 	list-style: none;
 	padding: 0;
 	margin: 0;
-	display: block;
+	display: inline-block;
 	outline: none;
 }
 .ui-menu .ui-menu {

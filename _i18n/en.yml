@@ -1,3 +1,5 @@
+global:
+  language: Language
 titles:
   books: Books
   about: About
