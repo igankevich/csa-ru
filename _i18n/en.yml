@@ -1,4 +1,14 @@
-global:
-  books: qweqwe
 titles:
   books: Books
+  about: About
+  bibliography: Bibliography
+  table: Table
+bib:
+  annotation: Annotation
+  howpublished: URL
+  fulltext: Full text
+  proceedings: Proceedings
+  books: Book chapters
+  journals: Journals
+  misc: Misc
+  everything: Everything

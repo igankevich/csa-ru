@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Bibliography
+title: titles.bibliography
 permalink: /bibliography/
 ---
 
@@ -9,11 +9,11 @@ $(function() { $("#tabs").tabs() })
 </script>
 <div id="tabs">
 	<ul>
-		<li><a href="#inproceedings">Proceedings</a></li>
-		<li><a href="#article">Journals</a></li>
-		<li><a href="#incollection">Books</a></li>
-		<li><a href="#misc">Misc</a></li>
-		<li><a href="#all">Everything</a></li>
+		<li><a href="#inproceedings">{% t bib.proceedings %}</a></li>
+		<li><a href="#article">{% t bib.journals %}</a></li>
+		<li><a href="#incollection">{% t bib.books %}</a></li>
+		<li><a href="#misc">{% t bib.misc %}</a></li>
+		<li><a href="#all">{% t bib.everything %}</a></li>
 	</ul>
 {% assign max_year = site.time | date: '%Y' %}
 {% assign types = "inproceedings article incollection misc all" | split: ' ' %}
@@ -25,12 +25,28 @@ $(function() { $("#tabs").tabs() })
 		{% assign tp = type %}
 	{% endif %}
 	{% for year in (site.data.bib.min_year..max_year) reversed %}
-		{% capture items %}
-			{% bibliography --file all --query @{{tp}}[year={{year}}] %}
-		{% endcapture %}
+		{% if site.lang != site.languages[0] %}
+			{% capture items %}
+				{% bibliography --file all --template ref --query @{{tp}}[year={{year}}] --style association-for-computing-machinery %}
+			{% endcapture %}
+		{% else %}
+			{% capture items %}
+				{% bibliography --file all --template ref --query @{{tp}}[year={{year}}] --style gost %}
+			{% endcapture %}
+		{% endif %}
 		{% assign str = items | split: '<li>' %}
 		{% if str[1] %}
 			{{ year }}
+			{% assign items = items | replace: '0th','0<sup>th</sup>' %}
+			{% assign items = items | replace: '1th','1<sup>th</sup>' %}
+			{% assign items = items | replace: '2th','2<sup>th</sup>' %}
+			{% assign items = items | replace: '3th','3<sup>th</sup>' %}
+			{% assign items = items | replace: '4th','4<sup>th</sup>' %}
+			{% assign items = items | replace: '5th','5<sup>th</sup>' %}
+			{% assign items = items | replace: '6th','6<sup>th</sup>' %}
+			{% assign items = items | replace: '7th','7<sup>th</sup>' %}
+			{% assign items = items | replace: '8th','8<sup>th</sup>' %}
+			{% assign items = items | replace: '9th','9<sup>th</sup>' %}
 			{{ items }}
 		{% endif %}
 	{% endfor %}

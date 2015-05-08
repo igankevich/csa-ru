@@ -1,4 +1,14 @@
-global:
-  books: qweqwe
 titles:
   books: Учебные пособия
+  about: О нас
+  bibliography: Публикации
+  table: Таблица
+bib:
+  annotation: Аннотация
+  howpublished: Ссылка
+  fulltext: Полный текст
+  proceedings: Труды конференций
+  books: Главы книг
+  journals: Журналы
+  misc: Тезисы
+  everything: Все публикации

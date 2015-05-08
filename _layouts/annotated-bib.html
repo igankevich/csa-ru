@@ -2,8 +2,12 @@
 ---
 {{reference}}
 {% if entry.annote %}
-	<div class="annote"><span class="annote-title">Аннотация. </span>{{entry.annote}}</div>
+	<div class="annote"><span class="annote-title">{% t bib.annotation %}. </span>{{entry.annote}}</div>
 {% endif %}
 {% if entry.howpublished %}
-	<div class="howpublished"><span class="howpublished-title">Ссылка: </span><a href="{{ entry.howpublished }}">{{ entry.howpublished }}</a></div>
+	<div class="howpublished"><span class="howpublished-title">{% t bib.howpublished %}: </span><a href="{{ entry.howpublished }}">{{ entry.howpublished }}</a></div>
+{% endif %}
+{% if link %}
+	{% assign name = link | split: '/' | last %}
+	<div class="fulltext"><span class="fulltext-title">{% t bib.fulltext %}: </span><a href="{{ link }}">{{ name }}</a></div>
 {% endif %}

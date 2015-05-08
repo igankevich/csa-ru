@@ -17,9 +17,9 @@
         {% for p in site.pages %}
           {% if p.title %}
           	{% if p.url == page.url %}
-          		<a class="page-link" href="#">{{ p.title }}</a>
+          		<a class="page-link" href="#">{% t p.title %}</a>
           	{% else %}
-          		<a class="page-link" href="{{ p.url | prepend: site.baseurl }}">{{ p.title }}</a>
+          		<a class="page-link" href="{{ p.url | prepend: site.baseurl }}">{% t p.title %}</a>
           	{% endif %}
           {% endif %}
         {% endfor %}

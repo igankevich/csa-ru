@@ -1,0 +1,24 @@
+---
+layout: page
+title: titles.table
+permalink: /table/
+---
+
+{% capture refs %}
+	{% bibliography --file all --template table %}
+{% endcapture %}
+
+{% assign refs =  refs | replace: '<li>','' | replace: '<ol class="bibliography">','' %}
+{% assign refs =  refs | replace: '</li>','' | replace: '</ol>','' %}
+
+<table>
+	<tr>
+		<th>№</th>
+		<th>Название</th>
+		<th>Печатный или на правах рукописи</th>
+		<th>Издательство, журнал (название, №, год)</th>
+		<th>Количество печатных листов</th>
+		<th>Фамилии соавторов</th>
+	</tr>
+	{{ refs }}
+</table>

@@ -22,9 +22,11 @@ sass:
 #  bibliography: books.bib
 
 scholar:
-  style: gost-r-7-0-5-2008-no-citation-number
+  style: gost
   sort_by: "year"
   order: descending
+  repository: repository
+  locale: en
   bibtex_options:
     strip: false
 
