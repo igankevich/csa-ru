@@ -102,7 +102,7 @@
       <term name="accessed">дата обращения</term>
     </terms>
   </locale>
-  <bibliography et-al-min="10" et-al-use-first="1">
+  <bibliography et-al-min="20" et-al-use-first="1">
     <sort>
       <key macro="language-sort"/>
       <key macro="author"/>
