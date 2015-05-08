@@ -5,7 +5,10 @@ permalink: /bibliography/
 ---
 
 <script>
-$(function() { $("#tabs").tabs() })
+$(function() {
+	$("#tabs").tabs()
+	$( "#tabs li" ).removeClass("ui-corner-top").addClass("ui-corner-all")
+})
 </script>
 <div id="tabs">
 	<ul>
