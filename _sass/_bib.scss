@@ -18,3 +18,32 @@ td {
 .author {
 	font-size: 111%;
 }
+
+.bibliography {
+}
+
+.bibliography > li {
+	padding: 0px;
+	border: 0px;
+	border-radius: 0px;
+}
+
+.year-label {
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+	user-select: none;
+	display: inline-block;
+	vertical-align: top;
+	margin-left: -10ex;
+	width: 7ex;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.bib-entries {
+	white-space: normal;
+	display: inline-block;
+}

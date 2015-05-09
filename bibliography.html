@@ -19,6 +19,7 @@ $(function() {
 		<li><a href="#all">{% t bib.everything %}</a></li>
 	</ul>
 {% assign max_year = site.time | date: '%Y' %}
+{% assign min_year = max_year | minus: site.data.bib.last_years %}
 {% assign types = "inproceedings article incollection misc all" | split: ' ' %}
 {% for type in types %}
 	<div id="{{ type }}">
@@ -27,30 +28,30 @@ $(function() {
 	{% else %}
 		{% assign tp = type %}
 	{% endif %}
-	{% for year in (site.data.bib.min_year..max_year) reversed %}
-		{% if site.lang != site.languages[0] %}
-			{% capture items %}
-				{% bibliography --file all --template ref --query @{{tp}}[year={{year}}] --style association-for-computing-machinery %}
-			{% endcapture %}
-		{% else %}
-			{% capture items %}
-				{% bibliography --file all --template ref --query @{{tp}}[year={{year}}] --style gost %}
-			{% endcapture %}
-		{% endif %}
+	{% for year in (min_year..max_year) reversed %}
+		{% capture items %}
+			{% if site.lang != site.languages[0] %}
+					{% bibliography --file all --template ref --query @{{tp}}[year={{year}}] --style association-for-computing-machinery %}
+			{% else %}
+					{% bibliography --file all --template ref --query @{{tp}}[year={{year}}] --style gost %}
+			{% endif %}
+		{% endcapture %}
 		{% assign str = items | split: '<li>' %}
 		{% if str[1] %}
-			{{ year }}
-			{% assign items = items | replace: '0th','0<sup>th</sup>' %}
-			{% assign items = items | replace: '1th','1<sup>th</sup>' %}
-			{% assign items = items | replace: '2th','2<sup>th</sup>' %}
-			{% assign items = items | replace: '3th','3<sup>th</sup>' %}
-			{% assign items = items | replace: '4th','4<sup>th</sup>' %}
-			{% assign items = items | replace: '5th','5<sup>th</sup>' %}
-			{% assign items = items | replace: '6th','6<sup>th</sup>' %}
-			{% assign items = items | replace: '7th','7<sup>th</sup>' %}
-			{% assign items = items | replace: '8th','8<sup>th</sup>' %}
-			{% assign items = items | replace: '9th','9<sup>th</sup>' %}
-			{{ items }}
+			<div style="white-space: nowrap;">
+				<div class="year-label">{{ year }}</div>
+					{% assign items = items | replace: '0th','0<sup>th</sup>' %}
+					{% assign items = items | replace: '1th','1<sup>th</sup>' %}
+					{% assign items = items | replace: '2th','2<sup>th</sup>' %}
+					{% assign items = items | replace: '3th','3<sup>th</sup>' %}
+					{% assign items = items | replace: '4th','4<sup>th</sup>' %}
+					{% assign items = items | replace: '5th','5<sup>th</sup>' %}
+					{% assign items = items | replace: '6th','6<sup>th</sup>' %}
+					{% assign items = items | replace: '7th','7<sup>th</sup>' %}
+					{% assign items = items | replace: '8th','8<sup>th</sup>' %}
+					{% assign items = items | replace: '9th','9<sup>th</sup>' %}
+				<div class="bib-entries"> {{ items }} </div>
+			</div>
 		{% endif %}
 	{% endfor %}
 	</div>
