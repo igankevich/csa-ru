@@ -1,4 +1,3 @@
-#require 'jekyll/multiple/languages/plugin'
-require 'jekyll-multiple-languages'
+require 'jekyll/multiple/languages/plugin'
 require 'csl/styles'
 require_relative 'jekyll-scholar-hacked/jekyll/scholar'

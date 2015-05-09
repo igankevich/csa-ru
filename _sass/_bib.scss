@@ -1,6 +1,20 @@
 td {
 	vertical-align: baseline;
 }
-.annote-title, .howpublished-title, .fulltext-title {
+.annote-title,
+.howpublished-title,
+.fulltext-title,
+.title-title,
+.author-title,
+{
 	font-weight: bold;
+}
+
+.title {
+	font-size: 133%;
+	font-weight: bold;
+}
+
+.author {
+	font-size: 111%;
 }

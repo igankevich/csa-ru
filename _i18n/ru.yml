@@ -8,6 +8,8 @@ titles:
 bib:
   annotation: Аннотация
   howpublished: Ссылка
+  title: Название
+  authors: Авторы
   fulltext: Полный текст
   proceedings: Труды конференций
   books: Главы книг

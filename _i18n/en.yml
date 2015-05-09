@@ -8,6 +8,8 @@ titles:
 bib:
   annotation: Annotation
   howpublished: URL
+  title: Title
+  authors: Authors
   fulltext: Full text
   proceedings: Proceedings
   books: Book chapters
