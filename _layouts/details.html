@@ -1,0 +1,16 @@
+---
+layout: page
+---
+<div class="title">{{page.entry.title}}</div>
+<div class="author">{{ page.entry.author | replace: ',','' | replace: ' and ',', ' }}</div>
+{% if page.entry.annote %}
+	<div class="annote"><span class="annote-title">{% t bib.annotation %}. </span>{{page.entry.annote}}</div>
+{% endif %}
+{% if page.entry.howpublished %}
+	<div class="howpublished"><span class="howpublished-title">{% t bib.howpublished %}: </span><a href="{{ page.entry.howpublished }}">{{ page.entry.howpublished }}</a></div>
+{% endif %}
+{% if link %}
+	{% assign name = link | split: '/' | last %}
+	<div class="fulltext"><span class="fulltext-title">{% t bib.fulltext %}: </span><a href="{{ link }}">{{ name }}</a></div>
+{% endif %}
+<br>

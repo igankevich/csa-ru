@@ -27,11 +27,15 @@ scholar:
   order: descending
   repository: repository
   locale: en
+  bibliography: all.bib
+  details_dir: bib
+  details_layout: details.html
+  details_link: "[more]"
   bibtex_options:
     strip: false
 
 languages: ["ru", "en"]
-exclude_from_localizations: ["analitik", "children", "css"]
+exclude_from_localizations: ["analitik", "children", "css", "js"]
 
 menus:
  - title: titles.bibliography

@@ -87,9 +87,14 @@ module Jekyll
 
       def bibtex_files
         @bibtex_files ||= [config['bibliography']]
-        Array(@bibtex_files).map do |file|
-          context.send(:resolve, file) || file
-        end
+		begin
+          tmp = Array(@bibtex_files).map do |file|
+            context.send(:resolve, file) || file
+          end
+		rescue
+		  return @bibtex_files
+		end
+		tmp
       end
 
       # :nodoc: backwards compatibility
