@@ -9,4 +9,5 @@ permalink: /books/
 	list-style: square outside;
 }
 </style>
-{% bibliography --file books --template annotated-bib %}
+{% assign min_year = site.time | date: '%Y' | minus: 15 %}
+{% include bibliography.html file="books" template="annotated-bib" min_year=min_year %}

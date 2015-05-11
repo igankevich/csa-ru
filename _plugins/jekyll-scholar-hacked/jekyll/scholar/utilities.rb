@@ -87,6 +87,9 @@ module Jekyll
 
       def bibtex_files
         @bibtex_files ||= [config['bibliography']]
+        Array(@bibtex_files).map do |file|
+          context.send(:resolve, file) || file
+        end
       end
 
       # :nodoc: backwards compatibility
@@ -238,6 +241,7 @@ module Jekyll
 
       def style
         @style || config['style']
+        context.send(:resolve, @style) || @style
       end
 
       def missing_reference
@@ -250,6 +254,7 @@ module Jekyll
 
       def bibliography_template
         @bibliography_template || config['bibliography_template']
+		interpolate @bibliography_template
       end
 
       def liquid_template

@@ -1,0 +1,77 @@
+{% if include.max_year %}
+	{% assign max_year = include.max_year %}
+{% else %}
+	{% assign max_year = site.time | date: '%Y' %}
+{% endif %}
+{% if include.min_year %}
+	{% assign min_year = include.min_year %}
+{% else %}
+	{% assign min_year = max_year | minus: site.data.bib.last_years %}
+{% endif %}
+{% if include.type %}
+	{% assign tp = include.type %}
+{% else %}
+	{% assign tp = "*" %}
+{% endif %}
+{% if include.file %}
+	{% assign file = include.file %}
+{% else %}
+	{% assign file = "all" %}
+{% endif %}
+{% if include.template %}
+	{% assign tpl = include.template %}
+{% else %}
+	{% assign tpl = "ref" %}
+{% endif %}
+{% if site.lang != site.languages[0] %}
+	{% assign style = "association-for-computing-machinery" %}
+{% else %}
+	{% assign style = "gost" %}
+{% endif %}
+{% for year in (min_year..max_year) reversed %}
+	{% capture items %}
+		{% bibliography --file file --template {{tpl}} --query @{{tp}}[year={{year}}] --style style %}
+	{% endcapture %}
+	{% assign str = items | split: '<li>' %}
+	{% if str[1] %}
+		<div class="year-container">
+			<div class="year-label">{{ year }}</div>
+			<div class="bib-entries">{{ items | superscript_numerals }}</div>
+		</div>
+	{% endif %}
+{% endfor %}
+{% assign max_year = min_year | minus: 1 %}
+{% assign min_year = 1990 %}
+{% capture items %}
+	{% for year in (min_year..max_year) reversed %}
+		{% capture items %}
+			{% bibliography --file file --template {{tpl}} --query @{{tp}}[year={{year}}] --style style %}
+		{% endcapture %}
+		{% assign str = items | split: '<li>' %}
+		{% if str[1] %}
+			<div class="year-container">
+				<div class="year-label">{{ year }}</div>
+				<div class="bib-entries">{{ items | superscript_numerals }}</div>
+			</div>
+		{% endif %}
+	{% endfor %}
+{% endcapture %}
+{% assign str = items | split: "<li>" %}
+{% if str[1] %}
+	<script>
+	$(function() {
+		$('#archive').toggle(false)
+		$("#show-all").click(function (e) {
+			$('#archive').toggle(true)
+			$("#show-all").remove()
+			e.preventDefault()
+		})
+	})
+	</script>
+	<span class="center">
+		<a class="show-all" href="#" id="show-all">{% t buttons.showall %}</a>
+	</span>
+	<div id="archive">
+		{{ items }}
+	</div>
+{% endif %}
