@@ -1,11 +1,10 @@
-global:
-  language: Language
 titles:
   books: Books
   about: About
   bibliography: Bibliography
   table: Table
   theses: Theses
+  language: Language
 bib:
   annotation: Annotation
   howpublished: URL

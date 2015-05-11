@@ -1,11 +1,10 @@
-global:
-  language: Язык
 titles:
   books: Учебные пособия
   about: О нас
-  bibliography: Публикации
+  bibliography: Статьи
   table: Таблица
   theses: Диссертации
+  language: Язык
 bib:
   annotation: Аннотация
   howpublished: Ссылка
