@@ -5,6 +5,10 @@ titles:
   table: Table
   theses: Theses
   language: Language
+  bachelor: Bachelor theses
+  master: Master theses
+  phd: PhD theses
+  scd: ScD theses
 bib:
   annotation: Annotation
   howpublished: URL

@@ -3,8 +3,12 @@ titles:
   about: О нас
   bibliography: Все публикации
   table: Таблица
-  theses: Диссертации
+  theses: Все диссертации
   language: Язык
+  bachelor: Бакалаврские
+  master: Магистерские
+  phd: Кандидатские
+  scd: Докторские
 bib:
   annotation: Аннотация
   howpublished: Ссылка

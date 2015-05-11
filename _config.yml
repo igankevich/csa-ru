@@ -47,6 +47,15 @@ menus:
       url: /misc
  - title: titles.theses
    url: /theses
+   sub:
+    - title: titles.bachelor
+      url: /bachelor
+    - title: titles.master
+      url: /master
+    - title: titles.phd
+      url: /phd
+    - title: titles.scd
+      url: /scd
  - title: titles.books
    url: /books
  - title: titles.about
