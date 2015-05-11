@@ -15,14 +15,33 @@
 			</a>
 
 			<div class="trigger">
-				{% assign sorted_pages = site.pages | sort: "name" %}
-				{% for p in sorted_pages %}
+				{% for p in site.menus %}
 					{% if p.title %}
+						<div class="page-link">
 						{% if p.url == page.url %}
-							<a class="page-link" href="#">{% t p.title %}</a>
+							<a href="#">{% t p.title %}</a>
 						{% else %}
-							<a class="page-link" href="{{ p.url | prepend: site.baseurl }}">{% t p.title %}</a>
+							<a href="{{ p.url | prepend: site.baseurl }}">{% t p.title %}</a>
 						{% endif %}
+						{% if site.menus[forloop.index0] %}
+							{% assign submenus = site.menus[forloop.index0].sub %}
+							<ul class="submenu">
+							{% for i in submenus %}
+								{% assign url = site.baseurl | append: p.url | append: i.url | append: '/' %}
+								<li class="submenu-item">
+									{% if url == page.url %}
+										<a href="#">{% t i.title %}</a>
+									{% else %}
+										<a href="{{ url }}">{% t i.title %}</a>
+									{% endif %}
+								</li>
+							{% endfor %}
+							</ul>
+						{% endif %}
+						{% if p.title == "titles.language" %}
+							{% include lang.html %}
+						{% endif %}
+						</div>
 					{% endif %}
 				{% endfor %}
 			</div>

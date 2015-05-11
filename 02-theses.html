@@ -9,4 +9,18 @@ permalink: /theses/
 	list-style: square outside;
 }
 </style>
-{% bibliography --file theses --template annotated-bib %}
+
+{% assign max_year = site.time | date: '%Y' %}
+{% assign min_year = max_year | minus: site.data.bib.last_years %}
+{% for year in (min_year..max_year) reversed %}
+	{% capture items %}
+		{% bibliography --file theses --template annotated-bib --query @*[year={{year}}] %}
+	{% endcapture %}
+	{% assign str = items | split: '<li>' %}
+	{% if str[1] %}
+		<div class="year-container">
+			<div class="year-label">{{ year }}</div>
+			<div class="bib-entries">{{ items | superscript_numerals }}</div>
+		</div>
+	{% endif %}
+{% endfor %}

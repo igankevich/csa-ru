@@ -1,0 +1,25 @@
+---
+layout: page
+title: bib.books
+permalink: /bibliography/inbook/
+---
+
+{% assign max_year = site.time | date: '%Y' %}
+{% assign min_year = max_year | minus: site.data.bib.last_years %}
+{% assign tp = "incollection" %}
+{% for year in (min_year..max_year) reversed %}
+	{% capture items %}
+		{% if site.lang != site.languages[0] %}
+				{% bibliography --file all --template ref --query @{{tp}}[year={{year}}] --style association-for-computing-machinery %}
+		{% else %}
+				{% bibliography --file all --template ref --query @{{tp}}[year={{year}}] --style gost %}
+		{% endif %}
+	{% endcapture %}
+	{% assign str = items | split: '<li>' %}
+	{% if str[1] %}
+		<div style="white-space: nowrap;">
+			<div class="year-label">{{ year }}</div>
+			<div class="bib-entries"> {{ items | superscript_numerals }} </div>
+		</div>
+	{% endif %}
+{% endfor %}

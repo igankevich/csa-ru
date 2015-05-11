@@ -12,11 +12,11 @@ $(function() {
 </script>
 <div id="tabs">
 	<ul>
+		<li><a href="#all">{% t bib.everything %}</a></li>
 		<li><a href="#inproceedings">{% t bib.proceedings %}</a></li>
 		<li><a href="#article">{% t bib.journals %}</a></li>
 		<li><a href="#incollection">{% t bib.books %}</a></li>
 		<li><a href="#misc">{% t bib.misc %}</a></li>
-		<li><a href="#all">{% t bib.everything %}</a></li>
 	</ul>
 {% assign max_year = site.time | date: '%Y' %}
 {% assign min_year = max_year | minus: site.data.bib.last_years %}
@@ -38,23 +38,9 @@ $(function() {
 		{% endcapture %}
 		{% assign str = items | split: '<li>' %}
 		{% if str[1] %}
-			<div style="white-space: nowrap;">
+			<div class="year-container">
 				<div class="year-label">{{ year }}</div>
-					{% assign items = items | replace: '0th','0<sup>th</sup>' %}
-					{% assign items = items | replace: '1th','1<sup>th</sup>' %}
-					{% assign items = items | replace: '2th','2<sup>th</sup>' %}
-					{% assign items = items | replace: '3th','3<sup>th</sup>' %}
-					{% assign items = items | replace: '4th','4<sup>th</sup>' %}
-					{% assign items = items | replace: '5th','5<sup>th</sup>' %}
-					{% assign items = items | replace: '6th','6<sup>th</sup>' %}
-					{% assign items = items | replace: '7th','7<sup>th</sup>' %}
-					{% assign items = items | replace: '8th','8<sup>th</sup>' %}
-					{% assign items = items | replace: '9th','9<sup>th</sup>' %}
-
-					{% assign items = items | replace: '1st','1<sup>th</sup>' %}
-					{% assign items = items | replace: '2nd','2<sup>th</sup>' %}
-					{% assign items = items | replace: '3rd','3<sup>th</sup>' %}
-				<div class="bib-entries"> {{ items }} </div>
+				<div class="bib-entries">{{ items | superscript_numerals }}</div>
 			</div>
 		{% endif %}
 	{% endfor %}

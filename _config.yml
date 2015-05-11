@@ -32,3 +32,24 @@ scholar:
 
 languages: ["ru", "en"]
 exclude_from_localizations: ["analitik", "children", "css"]
+
+menus:
+ - title: titles.bibliography
+   url: /bibliography
+   sub:
+    - title: bib.proceedings
+      url: /inproceedings
+    - title: bib.journals
+      url: /articles
+    - title: bib.books
+      url: /inbook
+    - title: bib.misc
+      url: /misc
+ - title: titles.theses
+   url: /theses
+ - title: titles.books
+   url: /books
+ - title: titles.about
+   url: /about
+ - title: titles.language
+   url: /language

@@ -1,5 +1,4 @@
-<ul class="languages" id="lang-menu">
-	<li class="lang">{% t titles.language %}:</li>
+<ul class="submenu">
 	{% for lang in site.languages %}
 		{% if forloop.first %}
 			{% assign prefix = "" %}
@@ -11,6 +10,6 @@
 		{% else %}
 			{% capture url %}{{ site.baseurl_root }}{{ prefix }}{{ page.url }}{% endcapture %}
 		{% endif %}
-		<li class="lang"><a href="{{ url }}">{{ lang }}</a></li>
+		<li class="submenu-item"><a href="{{ url }}">{{ lang }}</a></li>
 	{% endfor %}
 </ul>

@@ -32,13 +32,19 @@
     }
 
     .page-link {
-        color: $text-color;
+		vertical-align: top;
+		display: inline-block;
         line-height: $base-line-height;
 
         // Gaps between nav items, but not on the first one
         &:not(:first-child) {
             margin-left: 20px;
         }
+
+		a {
+    	    color: $text-color;
+			text-decoration: underline;
+		}
     }
 
 	.trigger {
