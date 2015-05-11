@@ -50,6 +50,10 @@ $(function() {
 					{% assign items = items | replace: '7th','7<sup>th</sup>' %}
 					{% assign items = items | replace: '8th','8<sup>th</sup>' %}
 					{% assign items = items | replace: '9th','9<sup>th</sup>' %}
+
+					{% assign items = items | replace: '1st','1<sup>th</sup>' %}
+					{% assign items = items | replace: '2nd','2<sup>th</sup>' %}
+					{% assign items = items | replace: '3rd','3<sup>th</sup>' %}
 				<div class="bib-entries"> {{ items }} </div>
 			</div>
 		{% endif %}
