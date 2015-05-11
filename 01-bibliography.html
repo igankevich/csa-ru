@@ -8,20 +8,16 @@ permalink: /bibliography/
 $(function() {
 	$("#tabs").tabs()
 	$( "#tabs li" ).removeClass("ui-corner-top").addClass("ui-corner-all")
+	$("#show-all").click(function (e) {
+		$('#archive').toggle()
+		e.preventDefault()
+	})
 })
 </script>
-<div id="tabs">
-	<ul>
-		<li><a href="#all">{% t bib.everything %}</a></li>
-		<li><a href="#inproceedings">{% t bib.proceedings %}</a></li>
-		<li><a href="#article">{% t bib.journals %}</a></li>
-		<li><a href="#incollection">{% t bib.books %}</a></li>
-		<li><a href="#misc">{% t bib.misc %}</a></li>
-	</ul>
-{% assign max_year = site.time | date: '%Y' %}
-{% assign min_year = max_year | minus: site.data.bib.last_years %}
-{% assign types = "inproceedings article incollection misc all" | split: ' ' %}
+{% assign types = "all" | split: ' ' %}
 {% for type in types %}
+	{% assign max_year = site.time | date: '%Y' %}
+	{% assign min_year = max_year | minus: site.data.bib.last_years %}
 	<div id="{{ type }}">
 	{% if type == "all" %}
 		{% assign tp = "*" %}
@@ -44,6 +40,28 @@ $(function() {
 			</div>
 		{% endif %}
 	{% endfor %}
+		<div class="center">
+			<a class="show-all" href="#" id="show-all">{% t buttons.showall %}</a>
+		</div>
+		<div id="archive">
+			{% assign max_year = min_year | minus: 1 %}
+			{% assign min_year = 1990 %}
+			{% for year in (min_year..max_year) reversed %}
+				{% capture items %}
+					{% if site.lang != site.languages[0] %}
+							{% bibliography --file all --template ref --query @{{tp}}[year={{year}}] --style association-for-computing-machinery %}
+					{% else %}
+							{% bibliography --file all --template ref --query @{{tp}}[year={{year}}] --style gost %}
+					{% endif %}
+				{% endcapture %}
+				{% assign str = items | split: '<li>' %}
+				{% if str[1] %}
+					<div class="year-container">
+						<div class="year-label">{{ year }}</div>
+						<div class="bib-entries">{{ items | superscript_numerals }}</div>
+					</div>
+				{% endif %}
+			{% endfor %}
+		</div>
 	</div>
 {% endfor %}
-</div>
