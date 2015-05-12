@@ -1,18 +1,26 @@
 <div class="search-bar">
 	<input type="search" name="q" id="q" placeholder="Enter keywords..."/>
-	<button class="search-button" type="button">search</button>
+	<button class="search-button" type="button" id="qsearch">search</button>
 </div>
 <script>
-var idx = lunr(function () {
+var docIndex = lunr(function () {
 	this.field('title', { boost: 10 })
-	this.field('body')
-})
-var doc = {
-    "title": "Twelfth-Night",
-    "body": "If music be the food of love, play on: Give me excess of it…",
-    "author": "William Shakespeare",
-    "id": 1
-}
-idx.add(doc)
-console.log(idx)
+	this.field('author')
+	this.field('year')
+});
+$(document).ready(function () {
+	$.getJSON('/docs.json', function (docs) {
+		console.log('Downloaded docs')
+		$.each(docs, function (i, val) {
+			docIndex.add(val)
+		});
+	});
+	$('#qsearch').click(function() {
+		var keyword = $('#q').val()
+		console.log(keyword)
+		if (keyword.length >= 2) {
+			console.log(docIndex.search(keyword))
+		}
+	})
+});
 </script>

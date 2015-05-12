@@ -1,0 +1,6 @@
+---
+---
+{% capture items %}
+[{% bibliography --file all --template json %}]
+{% endcapture %}
+{{ items | strip_html | replace: site.scholar.details_link, '' | replace: '[,', '[' }}

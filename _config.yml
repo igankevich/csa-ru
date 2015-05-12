@@ -9,6 +9,7 @@ baseurl: ""
 url: "http://csa.ru" # the base hostname & protocol for your site
 twitter_username: jekyllrb
 github_username:  jekyll
+encoding: utf-8
 
 # Build settings
 markdown: kramdown
@@ -35,7 +36,8 @@ scholar:
     strip: false
 
 languages: ["ru", "en"]
-exclude_from_localizations: ["analitik", "children", "css", "js"]
+exclude_from_localizations: ["analitik", "children", "css", "js", "bin"]
+exclude: ["bin", "Gemfile", "Gemfile.lock", "TODO", "gost.csl"]
 
 menus:
  - title: titles.bibliography
