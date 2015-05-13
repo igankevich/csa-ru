@@ -14,8 +14,9 @@ encoding: utf-8
 # Build settings
 markdown: kramdown
 
-sass:
-  style: :compressed
+assets:
+  js_compressor: uglifier
+  css_compressor: sass
 
 #  bibliography_list_tag: "table"
 #  bibliography_item_tag: "tr"
@@ -36,7 +37,7 @@ scholar:
     strip: false
 
 languages: ["ru", "en"]
-exclude_from_localizations: ["analitik", "children", "css", "js", "bin"]
+exclude_from_localizations: ["analitik", "children", "css", "bin"]
 exclude: ["bin", "Gemfile", "Gemfile.lock", "TODO", "gost.csl"]
 
 menus:
