@@ -3,21 +3,19 @@ layout: compress
 ---
 <!DOCTYPE html>
 <html lang="{{ site.lang }}">
-
-  {% include head.html %}
-
-  <body>
-
-    {% include header.html %}
-
-    <div class="page-content">
-      <div class="wrapper">
-        {{ content }}
-      </div>
-    </div>
-
-    {% include footer.html %}
-
-  </body>
-
+	{% include head.html %}
+	{% if page.itemtype %}
+	    {% assign page_itemtype = page.itemtype %}
+	{% else %}
+	    {% assign page_itemtype = "http://schema.org/WebPage" %}
+	{% endif %}
+	<body itemscope itemtype="{{ page_itemtype }}">
+		{% include header.html %}
+		<div class="page-content">
+			<div class="wrapper">
+				{{ content }}
+			</div>
+		</div>
+		{% include footer.html %}
+	</body>
 </html>
