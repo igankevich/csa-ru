@@ -1,7 +1,10 @@
 ---
-layout: page
+layout: bibliography
 title: titles.books
 permalink: /books/
+file: books
+template: annotated-bib
+years: 15
 ---
 
 <style type="text/css">
@@ -9,5 +12,3 @@ permalink: /books/
 	list-style: none;
 }
 </style>
-{% assign min_year = site.time | date: '%Y' | minus: 15 %}
-{% include bibliography.html file="books" template="annotated-bib" min_year=min_year %}

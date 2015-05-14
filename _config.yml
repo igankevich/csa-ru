@@ -17,6 +17,7 @@ highlighter: pygments
 assets:
   js_compressor: uglifier
   css_compressor: sass
+  gzip: false
 
 #  bibliography_list_tag: "table"
 #  bibliography_item_tag: "tr"
@@ -40,6 +41,11 @@ scholar:
 languages: ["ru", "en"]
 exclude_from_localizations: ["analitik", "children", "bin"]
 exclude: ["bin", "Gemfile", "Gemfile.lock", "TODO", "gost.csl", "Makefile"]
+
+compress_html:
+  clippings: all
+  comments: ["<!-- ", " -->"]
+  endings: all
 
 menus:
  - title: titles.bibliography

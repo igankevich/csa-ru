@@ -16,9 +16,9 @@ bib:
   title: Title
   authors: Authors
   fulltext: Full text
-  proceedings: Proceedings
+  proceedings: In proceedings
   books: Book chapters
-  journals: Journals
+  journals: In journals
   misc: Misc
   everything: Everything
 buttons:

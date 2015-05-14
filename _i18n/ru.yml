@@ -16,9 +16,9 @@ bib:
   title: Название
   authors: Авторы
   fulltext: Полный текст
-  proceedings: Труды конференций
+  proceedings: В трудах конференций
   books: Главы книг
-  journals: Журналы
+  journals: В журналах
   misc: Тезисы
   everything: Все публикации
 buttons:
