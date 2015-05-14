@@ -15,7 +15,15 @@
 			{% endif %}
 		{% endif %}
 	</title>
-	<meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | strip_newlines | truncate: 160 }}{% else %}{{ site.description }}{% endif %}">
+	{% if page.excerpt %}
+		{% assign desc = page.excerpt %}
+	{% elsif page.entry.annote %}
+		{% assign desc = page.entry.annote %}
+	{% else %}
+		{% assign desc = site.description %}
+	{% endif %}
+	{% assign desc = desc | strip_html | strip_newlines | truncate: 160 %}
+	<meta name="description" content="{{ desc }}">
 	
 	<link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
 	<link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/feed.xml" | prepend: site.baseurl_root | prepend: site.url }}" />

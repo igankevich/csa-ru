@@ -2,7 +2,7 @@
 layout: page
 ---
 <div class="title">{{page.entry.title}}</div>
-<div class="author">{{ page.entry.author | replace: ',','' | replace: ' and ',', ' }}</div>
+<div class="author">{{ page.entry.author | prune_author }}</div>
 {% if page.entry.annote %}
 	<div class="annote"><span class="annote-title">{% t bib.annotation %}. </span>{{page.entry.annote}}</div>
 {% endif %}
@@ -13,4 +13,12 @@ layout: page
 	{% assign name = link | split: '/' | last %}
 	<div class="fulltext"><span class="fulltext-title">{% t bib.fulltext %}: </span><a href="{{ link }}">{{ name }}</a></div>
 {% endif %}
+
+{% capture bibl %}
+{% highlight bibtex %}
+{{ page.entry.bibtex | escape_liquid }}
+{% endhighlight %}
+{% endcapture %}
+
 <br>
+{{ bibl | unescape_liquid }}

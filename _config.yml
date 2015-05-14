@@ -12,6 +12,8 @@ encoding: utf-8
 # Build settings
 markdown: kramdown
 
+highlighter: pygments
+
 assets:
   js_compressor: uglifier
   css_compressor: sass
@@ -31,6 +33,7 @@ scholar:
   details_dir: bib
   details_layout: details.html
   details_link: "[more]"
+  bibtex_skip_fields: [rawentry, annote]
   bibtex_options:
     strip: false
 
