@@ -5,10 +5,9 @@ permalink: /search/
 ---
 
 <div class="search-bar">
-	<input type="search" name="q" id="q" placeholder="Enter keywords..." autocomplete="off"/>
-	<button class="search-button" type="button" id="qsearch">Search</button>
+	<input type="search" name="q" id="q" placeholder="{% t search.placeholder %}" autocomplete="off" size="40" maxlength="40"/>
+	<button class="search-button" type="button" id="qsearch">{% t buttons.search %}</button>
 </div>
-{% include result.html %}
 <script>
 var docs = {}
 var docIndex
@@ -50,7 +49,10 @@ $(document).ready(function () {
 			});
 			$('#results-page').pajinate({
 				item_container_id: "#results",
-				nav_panel_id: "#results-nav"
+				nav_panel_id: "#results-nav",
+				abort_on_small_lists: true,
+				show_first_last: false,
+				items_per_page: 7
 			})
 		}
 	})
@@ -61,6 +63,7 @@ $(document).ready(function () {
 	</div>
 	<div id="results"></div>
 </div>
+{% include result.html %}
 {% javascript vendor/lunr %}
 {% javascript vendor/lunr.ru %}
 {% javascript vendor/ractive %}

@@ -23,3 +23,6 @@ bib:
   everything: Everything
 buttons:
   showall: Show all
+  search: Search
+search:
+  placeholder: "enter keywords, e.g. “OpenCL”"

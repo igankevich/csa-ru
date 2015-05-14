@@ -5,7 +5,7 @@ permalink: /table/
 ---
 
 {% capture refs %}
-	{% bibliography --file all --template table %}
+	{% bibliography --file papers --template table %}
 {% endcapture %}
 
 {% assign refs =  refs | replace: '<li>','' | replace: '<ol class="bibliography">','' %}

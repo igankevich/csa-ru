@@ -86,7 +86,7 @@ module Jekyll
       end
 
       def bibtex_files
-        @bibtex_files ||= [config['bibliography']]
+        @bibtex_files ||= config['bibliography']
 		begin
           tmp = Array(@bibtex_files).map do |file|
             context.send(:resolve, file) || file
@@ -213,7 +213,7 @@ module Jekyll
 
       def extend_path(name)
         if name.nil? || name.empty?
-          name = config['bibliography']
+          name = config['bibliography'][0]
         end
 
         # Return as is if it is an absolute path

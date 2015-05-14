@@ -23,3 +23,6 @@ bib:
   everything: Все публикации
 buttons:
   showall: Показать все
+  search: Найти
+search:
+  placeholder: "введите ключевые слова, например, “многосеточные”"
