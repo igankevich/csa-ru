@@ -26,7 +26,8 @@ $(document).ready(function () {
 		var keyword = $('#q').val()
 		console.log(keyword)
 		if (keyword.length >= 2) {
-			var result = docIndex.search(keyword)
+			var result = docIndex.search(tr.romanise(keyword))
+			$.merge(result, docIndex.search(tr.cyrillise(keyword)))
 			var years = {}
 			$.each(result, function (i, val) {
 				val.doc = docs[val.ref]
@@ -47,17 +48,21 @@ $(document).ready(function () {
 				template: '#template',
 				data: { results: arr }
 			});
-			$('#page_container').pajinate()
+			$('#results-page').pajinate({
+				item_container_id: "#results",
+				nav_panel_id: "#results-nav"
+			})
 		}
 	})
 });
 </script>
-<div id="page_container">
-	<div class="page_navigation">
+<div id="results-page">
+	<div id="results-nav">
 	</div>
-	<div id="results" class="content"></div>
+	<div id="results"></div>
 </div>
 {% javascript vendor/lunr %}
 {% javascript vendor/lunr.ru %}
 {% javascript vendor/ractive %}
 {% javascript vendor/jquery.pajinate %}
+{% javascript romanise %}
