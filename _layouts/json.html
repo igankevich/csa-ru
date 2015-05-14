@@ -1,6 +1,6 @@
 ,{
 	"title": "{{entry.title}}",
-	"author": "{{entry.author}}",
+	"author": "{{entry.author | replace: ',','' | replace: ' and ',', '}}",
 	"year": "{{entry.year}}",
 	"id": "{{details}}"
 }

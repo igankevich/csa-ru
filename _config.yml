@@ -2,9 +2,7 @@
 title: Computational Science Alliance
 email: your-email@domain.com
 description: > # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  Computational Science Alliance (CSA) создан в 2004 г. на базе Института высокопроизводительных вычислений и Информационных Систем, который в свое время был преобразован из Института Высокопроизводительных Вычислений и Баз Данных, являвшегося российским лидером в инновации современных информационных технологий на основе высокопроизводительной компьютерной техники, Учебно-научного центра по вычислительной механике Института Теплофизики Экстремальных Состояний РАН Санкт-Петербургского политехнического университета и кафедры высокопроизводительных вычислений СПбГПУ. Деятельность направлена на развитие новых технологий в использовании суперкомпьютеров в различных областях науки и техники, осуществление информационной и вычислительной поддержки государственных учреждений, исследовательских и образовательных организаций.
 baseurl: ""
 url: "http://csa.ru" # the base hostname & protocol for your site
 twitter_username: jekyllrb
@@ -37,8 +35,8 @@ scholar:
     strip: false
 
 languages: ["ru", "en"]
-exclude_from_localizations: ["analitik", "children", "css", "bin"]
-exclude: ["bin", "Gemfile", "Gemfile.lock", "TODO", "gost.csl"]
+exclude_from_localizations: ["analitik", "children", "bin"]
+exclude: ["bin", "Gemfile", "Gemfile.lock", "TODO", "gost.csl", "Makefile"]
 
 menus:
  - title: titles.bibliography
@@ -65,6 +63,8 @@ menus:
       url: /scd
  - title: titles.books
    url: /books
+ - title: titles.search
+   url: /search
  - title: titles.about
    url: /about
  - title: titles.language

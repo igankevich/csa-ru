@@ -1,0 +1,63 @@
+---
+layout: page
+title: titles.search
+permalink: /search/
+---
+
+<div class="search-bar">
+	<input type="search" name="q" id="q" placeholder="Enter keywords..." autocomplete="off"/>
+	<button class="search-button" type="button" id="qsearch">Search</button>
+</div>
+{% include result.html %}
+<script>
+var docs = {}
+var docIndex
+$(document).ready(function () {
+	Ractive.DEBUG = false;
+	$.getJSON('/docs-index.json', function (data) {
+		console.log('Downloaded index')
+		$.each(data.docs, function (i, val) {
+			docs[val.id] = val
+		})
+		docIndex = lunr.Index.load(data.index);
+		lunr.ru.call(docIndex)
+	});
+	$('#qsearch').click(function() {
+		var keyword = $('#q').val()
+		console.log(keyword)
+		if (keyword.length >= 2) {
+			var result = docIndex.search(keyword)
+			var years = {}
+			$.each(result, function (i, val) {
+				val.doc = docs[val.ref]
+				if (years[val.doc.year]) {
+					years[val.doc.year].push(val)
+				} else {
+					years[val.doc.year] = [val]
+				}
+			})
+			var arr = []
+			$.each(years, function (i, val) {
+				arr.push({items: val, year: Number(i)})
+			})
+			arr.sort(function (a,b) { return b.year - a.year })
+			console.log(arr)
+			var ractive = new Ractive({
+				el: '#results',
+				template: '#template',
+				data: { results: arr }
+			});
+			$('#page_container').pajinate()
+		}
+	})
+});
+</script>
+<div id="page_container">
+	<div class="page_navigation">
+	</div>
+	<div id="results" class="content"></div>
+</div>
+{% javascript vendor/lunr %}
+{% javascript vendor/lunr.ru %}
+{% javascript vendor/ractive %}
+{% javascript vendor/jquery.pajinate %}

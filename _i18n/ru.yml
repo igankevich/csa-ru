@@ -9,6 +9,7 @@ titles:
   master: Магистерские
   phd: Кандидатские
   scd: Докторские
+  search: Поиск
 bib:
   annotation: Аннотация
   howpublished: Ссылка

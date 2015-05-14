@@ -4,8 +4,4 @@ title: titles.about
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
-
-You can find the source code for the Jekyll new theme at: [github.com/jglovier/jekyll-new](https://github.com/jglovier/jekyll-new)
-
-You can find the source code for Jekyll at [github.com/jekyll/jekyll](https://github.com/jekyll/jekyll)
+Computational Science Alliance (CSA) создан в 2004 г. на базе Института высокопроизводительных вычислений и Информационных Систем, который в свое время был преобразован из Института Высокопроизводительных Вычислений и Баз Данных, являвшегося российским лидером в инновации современных информационных технологий на основе высокопроизводительной компьютерной техники, Учебно-научного центра по вычислительной механике Института Теплофизики Экстремальных Состояний РАН Санкт-Петербургского политехнического университета и кафедры высокопроизводительных вычислений СПбГПУ. Деятельность направлена на развитие новых технологий в использовании суперкомпьютеров в различных областях науки и техники, осуществление информационной и вычислительной поддержки государственных учреждений, исследовательских и образовательных организаций.

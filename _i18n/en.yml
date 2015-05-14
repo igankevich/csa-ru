@@ -9,6 +9,7 @@ titles:
   master: Master theses
   phd: PhD theses
   scd: ScD theses
+  search: Search
 bib:
   annotation: Annotation
   howpublished: URL

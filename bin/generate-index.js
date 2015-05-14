@@ -1,18 +1,25 @@
-#!/usr/bin/node
+#!/usr/bin/nodejs
 
-var lunr = require("../js/lunr.min.js")
+var lunr = require("../_assets/javascripts/vendor/lunr.js")
+global.lunr = lunr
+require("../_assets/javascripts/vendor/lunr.ru.js")
 var idx = lunr(function () {
 	this.field('title', { boost: 10 })
-	this.field('body')
+	this.field('author'),
+	this.field('year')
 })
-var doc = {
-    "title": "Twelfth-Night",
-    "body": "If music be the food of love, play on: Give me excess of it…",
-    "author": "William Shakespeare",
-    "id": 1
+lunr.ru.call(idx)
+var fs = require('fs');
+var docs = JSON.parse(fs.readFileSync('_site/docs.json', 'utf8'));
+for (var i=0; i<docs.length; ++i) {
+	idx.add(docs[i])
 }
-idx.add(doc)
-var rawIndex = JSON.stringify(idx.toJSON())
-console.log(rawIndex)
-idx = lunr.Index.load(JSON.parse(rawIndex))
-console.log(idx.search('love'))
+var docsAndIndex = {
+	docs: docs,
+	index: idx.toJSON()
+}
+var raw = JSON.stringify(docsAndIndex)
+fs.writeFileSync('_site/docs-index.json', raw)
+//console.log(rawIndex)
+//idx = lunr.Index.load(JSON.parse(rawIndex))
+//console.log(idx.search('love'))
