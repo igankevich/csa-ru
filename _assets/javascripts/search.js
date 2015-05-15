@@ -39,7 +39,7 @@ $(document).ready(function () {
 				nav_panel_id: "#results-nav",
 				abort_on_small_lists: true,
 				show_first_last: false,
-				items_per_page: 7,
+				items_per_page: 100,
 				nav_label_prev: '&larr;',
 				nav_label_next: '&rarr;'
 			})
