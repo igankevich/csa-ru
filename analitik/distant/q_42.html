@@ -1,10 +1,13 @@
+---
+layout: page
+---
 
 <!-- File q_42.html  -->
 <!-- Текст от 24.09.2001 (с оглавлением) -->
 <!--   =========================  --> 
 <!--  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
 <h2>Умножение матрицы на вектор</h2>
-<img src="10_3.gif" border=5 align="top" alt="ris_10_3">
+<img src="10_3.gif" class="legacy-figure" alt="ris_10_3">
 <br>Задача умножения двух квадратных матриц (<var>n x n</var>)
 <br>Последовательный код программы умножения двух квадратных матриц 
 (<var>n x n</var>) на языке C:<br>
@@ -42,9 +45,9 @@
 состоять из <var>(n/l) x (n/l)</var> элементов. Обозначим <var>A<sub>p,q</sub></var> подматрицу в
 подматрице ряда <var>p</var> и подматрице столбца <var>q</var>.
 <br>Поясняющие рисунки :<br>
-<img src="10_4.gif" border=5 align="top" alt="ris_10_4">
+<img src="10_4.gif" class="legacy-figure" alt="ris_10_4">
 
-<img src="10_5.gif" border=5 align="top" alt="ris_10_5">
+<img src="10_5.gif" class="legacy-figure" alt="ris_10_5">
 <br>
 <code>
 <br>for(p=0;p&lt;s;p++)
@@ -65,7 +68,7 @@
 Можно использовать подматрицы.
 <br>На следующем рисунке изображена работа <var>P<sup>i,j</sup></var> процессора.
 <br>
-<img src="10_6.gif" border=5 align="top" alt="ris_10_6">
+<img src="10_6.gif" class="legacy-figure" alt="ris_10_6">
 
 <br>Анализ затраченного времени
 <br>a) На обмен сообщениями:
@@ -82,7 +85,7 @@ n<sup>2</sup>(t<sub>startup</sub>+(n<sup>2</sup>) t<sub>data</sub>)</var>.
 <br><var>t<sub>comm</sub>=2n</var>
 <br><var>n</var> чисел могут быть сложены за <var>log n</var> шагов, используя 
 <var>n</var>-штук процессоров:
-<br><img src="10_7.gif" border=5 align="top" alt="ris_10_7">
+<br><img src="10_7.gif" class="legacy-figure" alt="ris_10_7">
 <br>
 Общее время (time complexity) при использовании <var>n<sup>3</sup></var> процессоров
 оценивается как <var>O(log n)</var>.
