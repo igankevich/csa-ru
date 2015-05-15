@@ -3,4 +3,4 @@ all: validate
 	./bin/generate-index.js
 
 validate:
-	html5validator --root _site --blacklist children analitik
+	html5validator --root _site --blacklist children
