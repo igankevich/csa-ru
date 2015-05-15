@@ -1,7 +1,7 @@
 module Jekyll
   module BibliographyFilter
     def superscript_numerals(input)
-	  input.gsub!(/([0-9])(th|st|nd|rd)/, '\1<sup>\2</sup>')
+	  input.gsub!(/([0-9])(th|st|nd|rd)\b/, '\1<sup>\2</sup>')
 	  input
     end
 	def escape_liquid(input)

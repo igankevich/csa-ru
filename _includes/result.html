@@ -1,16 +1,10 @@
 {% raw %}
-<style type="text/css">
-.bibliography {
-	list-style: none;
-	margin-bottom: 0px;
-}
-</style>
 <script id="template" type="text/ractive">
 {{#results}}
 <div class="year-container">
 	<div class="year-label">{{year}}</div>
 	<div class="bib-entries">
-		<ol class="bibliography">
+		<ol class="search-bibliography">
 			{{#items}}
 			<li><a href="{{ref}}">{{doc.title}}</a><br>{{doc.author}}</li>
 			{{/items}}
