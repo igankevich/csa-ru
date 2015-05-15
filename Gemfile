@@ -12,3 +12,6 @@ gem 'citeproc-ruby'
 gem 'jekyll-assets'
 gem "uglifier"
 gem "sass"
+
+# HTML validation tools
+gem 'html-proofer'
