@@ -176,11 +176,19 @@ if status != 200:
 if response.getheader('Content-Encoding', 'identity').lower() == 'gzip':
   response = gzip.GzipFile(fileobj=StringIO.StringIO(response.read()))
   
-if fileName and gnu:
+#if fileName and gnu:
+if fileName:
   quotedName = '"%s"' % fileName.replace('"', '\\042')
-  for line in response:
+  lines = response.read().split('\n')
+  if lines and lines[0]:
+    for ln in lines:
+      sys.stdout.write(quotedName)
+      sys.stdout.write(ln)
+      sys.stdout.write('\n')
+  else:
     sys.stdout.write(quotedName)
-    sys.stdout.write(line)
+    sys.stdout.write(' OK')
+    sys.stdout.write('\n')
 else:
   sys.stdout.write(response.read())
 
