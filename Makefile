@@ -4,3 +4,6 @@ all: validate
 
 validate:
 	html5validator --root _site --blacklist children
+
+validate2:
+	./bin/validate-2.sh
