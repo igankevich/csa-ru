@@ -40,8 +40,8 @@ scholar:
     strip: false
 
 languages: ["ru", "en"]
-exclude_from_localizations: ["analitik", "children", "bin"]
-exclude: ["bin", "Gemfile", "Gemfile.lock", "TODO", "gost.csl", "Makefile"]
+exclude_from_localizations: ["analitik", "children", "bin", "raw-papers"]
+exclude: ["bin", "Gemfile", "Gemfile.lock", "TODO", "gost.csl", "Makefile", "raw-papers"]
 
 compress_html:
   clippings: all
