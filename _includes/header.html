@@ -15,7 +15,7 @@
 			</a>
 
 			<div class="trigger">
-				{% for p in site.menus %}
+				{% for p in site.data.menu %}
 					{% assign url = p.url | append: '/' %}
 					{% if p.title %}
 						<div class="page-link">
@@ -33,8 +33,8 @@
 								{{tmp}}
 							{% endif %}
 						{% endif %}
-						{% if site.menus[forloop.index0] %}
-							{% assign submenus = site.menus[forloop.index0].sub %}
+						{% if site.data.menu[forloop.index0] %}
+							{% assign submenus = site.data.menu[forloop.index0].sub %}
 							<ul class="submenu">
 							{% for i in submenus %}
 								{% assign url = site.baseurl | append: p.url | append: i.url | append: '/' %}

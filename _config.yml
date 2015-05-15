@@ -1,30 +1,32 @@
 # Site settings
 title: Computational Science Alliance
-email: your-email@domain.com
-description: > # this means to ignore newlines until "baseurl:"
+description: >
   Computational Science Alliance (CSA) создан в 2004 г. на базе Института высокопроизводительных вычислений и Информационных Систем, который в свое время был преобразован из Института Высокопроизводительных Вычислений и Баз Данных, являвшегося российским лидером в инновации современных информационных технологий на основе высокопроизводительной компьютерной техники, Учебно-научного центра по вычислительной механике Института Теплофизики Экстремальных Состояний РАН Санкт-Петербургского политехнического университета и кафедры высокопроизводительных вычислений СПбГПУ. Деятельность направлена на развитие новых технологий в использовании суперкомпьютеров в различных областях науки и техники, осуществление информационной и вычислительной поддержки государственных учреждений, исследовательских и образовательных организаций.
-baseurl: ""
-url: "http://csa.ru" # the base hostname & protocol for your site
-twitter_username: jekyllrb
-github_username:  jekyll
+url: http://csa.ru
 encoding: utf-8
-
-# Build settings
 markdown: kramdown
-
 highlighter: pygments
 
+# multilingual pages
+languages: ["ru", "en"]
+exclude_from_localizations: ["analitik", "children", "bin", "raw-papers"]
+
+exclude: ["bin", "Gemfile", "Gemfile.lock", "TODO", "gost.csl", "Makefile", "raw-papers"]
+
+# compress and cache JS and CSS files preserving copyright
 assets:
   js_compressor: uglifier_with_copyright
   css_compressor: sass
   gzip: false
   cache: true
 
-#  bibliography_list_tag: "table"
-#  bibliography_item_tag: "tr"
-#  details_link: "[more]"
-#  bibliography: books.bib
+# compress HTML files
+compress_html:
+  clippings: all
+  comments: ["<!-- ", " -->"]
+  endings: all
 
+# BibTeX support
 scholar:
   style: gost
   sort_by: "year"
@@ -38,44 +40,3 @@ scholar:
   bibtex_skip_fields: [rawentry, annote]
   bibtex_options:
     strip: false
-
-languages: ["ru", "en"]
-exclude_from_localizations: ["analitik", "children", "bin", "raw-papers"]
-exclude: ["bin", "Gemfile", "Gemfile.lock", "TODO", "gost.csl", "Makefile", "raw-papers"]
-
-compress_html:
-  clippings: all
-  comments: ["<!-- ", " -->"]
-  endings: all
-
-menus:
- - title: titles.bibliography
-   url: /bibliography
-   sub:
-    - title: bib.proceedings
-      url: /inproceedings
-    - title: bib.journals
-      url: /articles
-    - title: bib.books
-      url: /inbook
-    - title: bib.misc
-      url: /misc
- - title: titles.theses
-   url: /theses
-   sub:
-    - title: titles.bachelor
-      url: /bachelor
-    - title: titles.master
-      url: /master
-    - title: titles.phd
-      url: /phd
-    - title: titles.scd
-      url: /scd
- - title: titles.books
-   url: /books
- - title: titles.search
-   url: /search
- - title: titles.about
-   url: /about
- - title: titles.language
-   url: /language
