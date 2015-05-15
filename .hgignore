@@ -5,4 +5,5 @@ syntax: glob
 *~
 _site
 .sass-cache
+.jekyll-assets-cache
 Gemfile.lock

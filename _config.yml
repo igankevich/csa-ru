@@ -15,9 +15,10 @@ markdown: kramdown
 highlighter: pygments
 
 assets:
-  js_compressor: uglifier
+  js_compressor: uglifier_with_copyright
   css_compressor: sass
   gzip: false
+  cache: true
 
 #  bibliography_list_tag: "table"
 #  bibliography_item_tag: "tr"
