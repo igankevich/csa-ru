@@ -20,9 +20,18 @@
 					{% if p.title %}
 						<div class="page-link">
 						{% if url == page.url %}
-							<a>{% t p.title %}</a>
+							<span itemprop="breadcrumb">
+								<a>{% t p.title %}</a>
+							</span>
 						{% else %}
-							<a href="{{ url | prepend: site.baseurl }}">{% t p.title %}</a>
+							{% capture tmp %}
+								<a href="{{ url | prepend: site.baseurl }}">{% t p.title %}</a>
+							{% endcapture %}
+							{% if page.url contains url %}
+								<span itemprop="breadcrumb">{{tmp}}</span>
+							{% else %}
+								{{tmp}}
+							{% endif %}
 						{% endif %}
 						{% if site.menus[forloop.index0] %}
 							{% assign submenus = site.menus[forloop.index0].sub %}

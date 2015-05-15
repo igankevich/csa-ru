@@ -1,1 +1,27 @@
-{{ reference }}
+{% if entry.type == "book" %}
+	{% assign subitemtype = "http://schema.org/Book" %}
+{% else %}
+	{% assign subitemtype = "http://schema.org/Article" %}
+{% endif %}
+<span itemscope itemtype="{{subitemtype}}">
+	{{ reference }}
+	{% if page.entry.publisher %}
+		<meta itemprop="publisher" content="{{page.entry.publisher}}" />
+	{% endif %}
+	{% if page.entry.year %}
+		<meta itemprop="datePublished" content="{{page.entry.year}}" />
+	{% endif %}
+	{% assign title = entry.title | replace: '"', '' %}
+	<meta itemprop="name" content="{{title}}" />
+	<meta itemprop="author" content="{{entry.author | prune_author}}" />
+	{% if details %}
+		<meta itemprop="sameAs" content="{{details}}" />
+	{% endif %}
+	{% if link %}
+		<meta itemprop="sameAs" content="{{link}}" />
+	{% endif %}
+	{% if entry.howpublished %}
+		<meta itemprop="sameAs" content="{{entry.howpublished}}" />
+	{% endif %}
+</span>
+

@@ -22,7 +22,7 @@
 	{% else %}
 		{% assign desc = site.description %}
 	{% endif %}
-	{% assign desc = desc | strip_html | strip_newlines | truncate: 160 %}
+	{% assign desc = desc | strip_html | strip_newlines | truncate: 160 | replace: '"', '' %}
 	<meta name="description" content="{{ desc }}">
 	
 	<link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">

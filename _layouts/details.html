@@ -1,18 +1,41 @@
 ---
 layout: page
+itemtype: http://schema.org/ItemPage
 ---
-<div class="title">{{page.entry.title}}</div>
-<div class="author">{{ page.entry.author | prune_author }}</div>
-{% if page.entry.annote %}
-	<div class="annote"><span class="annote-title">{% t bib.annotation %}. </span>{{page.entry.annote}}</div>
+{% if page.entry.type == "book" %}
+	{% assign subitemtype = "http://schema.org/Book" %}
+{% else %}
+	{% assign subitemtype = "http://schema.org/Article" %}
 {% endif %}
-{% if page.entry.howpublished %}
-	<div class="howpublished"><span class="howpublished-title">{% t bib.howpublished %}: </span><a href="{{ page.entry.howpublished }}">{{ page.entry.howpublished }}</a></div>
-{% endif %}
-{% if link %}
-	{% assign name = link | split: '/' | last %}
-	<div class="fulltext"><span class="fulltext-title">{% t bib.fulltext %}: </span><a href="{{ link }}">{{ name }}</a></div>
-{% endif %}
+<div itemscope itemtype="{{subitemtype}}">
+	<div class="title" itemprop="name">{{page.entry.title}}</div>
+	<div class="author" itemprop="author">{{ page.entry.author | prune_author }}</div>
+	{% if page.entry.annote %}
+		<div class="annote">
+			<span class="annote-title">{% t bib.annotation %}. </span>
+			<span itemprop="about">{{page.entry.annote}}</span>
+		</div>
+	{% endif %}
+	{% if page.entry.howpublished %}
+		<div class="howpublished">
+			<span class="howpublished-title">{% t bib.howpublished %}: </span>
+			<a href="{{ page.entry.howpublished }}" itemprop="sameAs">{{ page.entry.howpublished }}</a>
+		</div>
+	{% endif %}
+	{% if link %}
+		{% assign name = link | split: '/' | last %}
+		<div class="fulltext">
+			<span class="fulltext-title">{% t bib.fulltext %}: </span>
+			<a href="{{ link }}" itemprop="sameAs">{{ name }}</a>
+		</div>
+	{% endif %}
+	{% if page.entry.publisher %}
+		<meta itemprop="publisher" content="{{page.entry.publisher}}" />
+	{% endif %}
+	{% if page.entry.year %}
+		<meta itemprop="datePublished" content="{{page.entry.year}}" />
+	{% endif %}
+</div>
 
 {% capture bibl %}
 {% highlight bibtex %}
