@@ -4,7 +4,15 @@ layout: default
 <div class="post">
 	<header class="post-header">
 	{% if page.title %}
-		<h1 class="post-title">{% t page.title %}</h1>
+		<h1 class="post-title">
+			{% capture title %}{% t page.title %}{% endcapture %}
+			{% assign sz = title | remove: ' ' | strip_newlines | size %}
+			{% if sz == 0 %}
+				{{page.title}}
+			{% else %}
+				{{title}}
+			{% endif %}
+		</h1>
 	{% endif %}
 	</header>
 	<article class="post-content">

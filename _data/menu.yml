@@ -20,11 +20,25 @@
      url: /phd
    - title: titles.scd
      url: /scd
+- title: titles.activities_short
+  url: /activities
+  sub:
+   - title: titles.workshops
+     url: /workshops
+   - title: titles.conferences
+     url: /conferences
+   - title: titles.journals
+     url: /journals
 - title: titles.books
   url: /books
 - title: titles.search
   url: /search
 - title: titles.about
   url: /about
+  sub:
+   - title: titles.apmath
+     url: /apmath
+   - title: titles.grants
+     url: /grants
 - title: titles.language
   url: /language

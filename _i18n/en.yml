@@ -10,6 +10,14 @@ titles:
   phd: PhD theses
   scd: ScD theses
   search: Search
+  apmath: APMATH
+  activities: Activities
+  activities_short: Activities
+  workshops: Workshops
+  conferences: Conferences
+  grants: Grants
+  stub: The page is under construction. Please, come back later.
+  journals: Journals
 bib:
   annotation: Annotation
   howpublished: URL
@@ -21,8 +29,11 @@ bib:
   journals: In journals
   misc: Misc
   everything: Everything
+  number: No.
 buttons:
   showall: Show all
   search: Search
 search:
   placeholder: "enter keywords, e.g. “OpenCL”"
+links:
+  workshop: More...

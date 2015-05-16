@@ -10,6 +10,14 @@ titles:
   phd: Кандидатские
   scd: Докторские
   search: Поиск
+  apmath: ПМПУ
+  activities: Организационная деятельность
+  activities_short: Орг. деятельность
+  workshops: Семинары
+  conferences: Конференции
+  grants: Гранты
+  stub: Страница находится в разработке и в скором времени будет обновлена.
+  journals: Журналы
 bib:
   annotation: Аннотация
   howpublished: Ссылка
@@ -21,8 +29,11 @@ bib:
   journals: В журналах
   misc: Тезисы
   everything: Все публикации
+  number: №
 buttons:
   showall: Показать все
   search: Найти
 search:
   placeholder: "введите ключевые слова, например, “многосеточные”"
+links:
+  workshop: Страница семинара

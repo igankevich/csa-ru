@@ -6,7 +6,13 @@
 	
 	<title>
 		{% if page.title %}
-			{% t page.title %}
+			{% capture title %}{% t page.title %}{% endcapture %}
+			{% assign sz = title | remove: ' ' | strip_newlines | size %}
+			{% if sz == 0 %}
+				{{page.title}}
+			{% else %}
+				{{title}}
+			{% endif %}
 		{% else %}
 			{% if page.entry.title %}
 				{{ page.entry.author }} {{ page.entry.title }}
@@ -19,6 +25,8 @@
 		{% assign desc = page.excerpt %}
 	{% elsif page.entry.annote %}
 		{% assign desc = page.entry.annote %}
+	{% elseif page.description %}
+		{% assign desc = page.description %}
 	{% else %}
 		{% assign desc = site.description %}
 	{% endif %}

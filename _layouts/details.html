@@ -36,12 +36,12 @@ itemtype: http://schema.org/ItemPage
 		<meta itemprop="datePublished" content="{{page.entry.year}}" />
 	{% endif %}
 </div>
-
-{% capture bibl %}
-{% highlight bibtex %}
-{{ page.entry.bibtex | escape_liquid }}
-{% endhighlight %}
-{% endcapture %}
-
-<br>
-{{ bibl | unescape_liquid }}
+{% if page.entry.type != "grant" %}
+	{% capture bibl %}
+		{% highlight bibtex %}
+		{{ page.entry.bibtex | escape_liquid }}
+	{% endhighlight %}
+	{% endcapture %}
+	<br>
+	{{ bibl | unescape_liquid }}
+{% endif %}

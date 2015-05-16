@@ -1,0 +1,8 @@
+---
+---
+<div class="title">{{ entry.title }}</div>
+<div class="sponsor">{{ entry.sponsor }}, {%t bib.number %}{{ entry.number }}</div>
+{% if entry.annote %}
+	<div class="annote"><span class="annote-title">{% t bib.annotation %}. </span>{{entry.annote}}</div>
+{% endif %}
+<br>

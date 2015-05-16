@@ -7,6 +7,7 @@ gem 'csl-styles'
 gem 'bibtex-ruby'
 gem 'json'
 gem 'citeproc-ruby'
+gem 'jekyll-sitemap'
 
 # assets and dependencies
 gem 'jekyll-assets'

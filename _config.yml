@@ -33,7 +33,7 @@ scholar:
   order: descending
   repository: repository
   locale: en
-  bibliography: ["books.bib", "papers.bib", "theses.bib"]
+  bibliography: ["books.bib", "papers.bib", "theses.bib", "grants.bib"]
   details_dir: bib
   details_layout: details.html
   details_link: "[more]"

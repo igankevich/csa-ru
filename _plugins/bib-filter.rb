@@ -18,6 +18,14 @@ module Jekyll
 	  input.gsub!(/ and /, ', ')
 	  input
 	end
+	def dates(input)
+	  twoDates = input.split(' ')
+	  date1 = Date.parse(twoDates[0])
+	  date2 = Date.parse(twoDates[1])
+	  day1 = date1.strftime('%-d')
+	  dayN = date2.strftime('%-d')
+	  date1.strftime(day1 + '&ndash;' + dayN + ' %b %Y')
+	end
   end
   module Search
     class SearchIndexGenerator < Generator
