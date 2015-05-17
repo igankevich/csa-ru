@@ -17,10 +17,10 @@ layout: page
 {% else %}
 	{% assign tp = "*" %}
 {% endif %}
-{% if page.file %}
-	{% assign file = page.file %}
+{% if page.query %}
+	{% assign q = page.query | prepend: '&&' %}
 {% else %}
-	{% assign file = "papers" %}
+	{% assign q = "" %}
 {% endif %}
 {% if page.template %}
 	{% assign tpl = page.template %}
@@ -34,7 +34,7 @@ layout: page
 {% endif %}
 {% for year in (min_year..max_year) reversed %}
 	{% capture items %}
-		{% bibliography --file file --template {{tpl}} --query @{{tp}}[year={{year}}] --style style %}
+		{% bibliography --template {{tpl}} --query @{{tp}}[year={{year}}{{q}}] --style style %}
 	{% endcapture %}
 	{% assign str = items | split: '<li>' %}
 	{% if str[1] %}
@@ -49,7 +49,7 @@ layout: page
 {% capture items %}
 	{% for year in (min_year..max_year) reversed %}
 		{% capture items %}
-			{% bibliography --file file --template {{tpl}} --query @{{tp}}[year={{year}}] --style style %}
+			{% bibliography --template {{tpl}} --query @{{tp}}[year={{year}}{{q}}] --style style %}
 		{% endcapture %}
 		{% assign str = items | split: '<li>' %}
 		{% if str[1] %}

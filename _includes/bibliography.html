@@ -13,11 +13,6 @@
 {% else %}
 	{% assign tp = "*" %}
 {% endif %}
-{% if include.file %}
-	{% assign file = include.file %}
-{% else %}
-	{% assign file = "papers" %}
-{% endif %}
 {% if include.template %}
 	{% assign tpl = include.template %}
 {% else %}
@@ -30,7 +25,7 @@
 {% endif %}
 {% for year in (min_year..max_year) reversed %}
 	{% capture items %}
-		{% bibliography --file file --template {{tpl}} --query @{{tp}}[year={{year}}] --style style %}
+		{% bibliography --template {{tpl}} --query @{{tp}}[year={{year}}] --style style %}
 	{% endcapture %}
 	{% assign str = items | split: '<li>' %}
 	{% if str[1] %}
@@ -45,7 +40,7 @@
 {% capture items %}
 	{% for year in (min_year..max_year) reversed %}
 		{% capture items %}
-			{% bibliography --file file --template {{tpl}} --query @{{tp}}[year={{year}}] --style style %}
+			{% bibliography --template {{tpl}} --query @{{tp}}[year={{year}}] --style style %}
 		{% endcapture %}
 		{% assign str = items | split: '<li>' %}
 		{% if str[1] %}
