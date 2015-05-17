@@ -298,6 +298,7 @@ module Jekyll
 
         e['key'] = entry.key
         e['type'] = entry.type.to_s
+        e['link'] = repository_link_for(entry)
 
         if entry.field_names(config['bibtex_skip_fields']).empty?
           e['bibtex'] = entry.to_s
@@ -327,9 +328,21 @@ module Jekyll
       end
 
       def details_file_for(entry)
-        name = entry.key.to_s.dup
+	    if entry.title.to_s.empty?
+          name = entry.key.to_s.dup
+		else
+          name = entry.title.to_s.dup
+		end
 
-        name.gsub!(/[:\s]+/, '_')
+        name.gsub!(/^[^[:alnum:]]+/, '')
+        name.gsub!(/[^[:alnum:]]+$/, '')
+        name.gsub!(/[^[:alnum:]]+/, '-')
+		oldSize = name.size
+		name = name[0..60].downcase
+		if name.size < oldSize
+		  idx = name.rindex('-')
+		  name = name[0..idx-1]
+		end
 
         if site.config['permalink'] == 'pretty'
           name << '/index.html'

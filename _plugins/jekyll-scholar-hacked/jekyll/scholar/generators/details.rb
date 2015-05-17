@@ -9,8 +9,10 @@ module Jekyll
 
         @config = Scholar.defaults.merge(site.config['scholar'] || {})
 
-        @name = entry.key.to_s.gsub(/[:\s]+/, '_')
-        @name << '.html'
+#        @name = entry.key.to_s.gsub(/[:\s]+/, '_')
+#        @name << '.html'
+
+		@name = details_file_for(entry)
 
         process(@name)
         read_yaml(File.join(base, '_layouts'), config['details_layout'])

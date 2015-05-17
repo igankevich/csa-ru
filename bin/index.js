@@ -1,4 +1,4 @@
-#!/usr/bin/nodejs
+#!/usr/bin/node
 
 var lunr = require("../_assets/javascripts/vendor/lunr.js")
 global.lunr = lunr

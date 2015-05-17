@@ -8,7 +8,7 @@ itemtype: http://schema.org/ItemPage
 	{% assign subitemtype = "http://schema.org/Article" %}
 {% endif %}
 <div itemscope itemtype="{{subitemtype}}">
-	<div class="title" itemprop="name">{{page.entry.title}}</div>
+	<h2 class="title" itemprop="name">{{page.entry.title}}</h2>
 	<div class="author" itemprop="author">{{ page.entry.author | prune_author }}</div>
 	{% if page.entry.annote %}
 		<div class="annote">
@@ -22,11 +22,11 @@ itemtype: http://schema.org/ItemPage
 			<a href="{{ page.entry.howpublished }}" itemprop="sameAs">{{ page.entry.howpublished }}</a>
 		</div>
 	{% endif %}
-	{% if link %}
-		{% assign name = link | split: '/' | last %}
+	{% if page.entry.link %}
+		{% assign name = page.entry.link | split: '/' | last %}
 		<div class="fulltext">
 			<span class="fulltext-title">{% t bib.fulltext %}: </span>
-			<a href="{{ link }}" itemprop="sameAs">{{ name }}</a>
+			<a href="{{ page.entry.link }}" itemprop="sameAs">{{ name }}</a>
 		</div>
 	{% endif %}
 	{% if page.entry.publisher %}
