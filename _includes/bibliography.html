@@ -31,7 +31,7 @@
 	{% if str[1] %}
 		<div class="year-container">
 			<div class="year-label">{{ year }}</div>
-			<div class="bib-entries">{{ items | superscript_numerals }}</div>
+			<div class="bib-entries">{{ items | typograph }}</div>
 		</div>
 	{% endif %}
 {% endfor %}
@@ -46,7 +46,7 @@
 		{% if str[1] %}
 			<div class="year-container">
 				<div class="year-label">{{ year }}</div>
-				<div class="bib-entries">{{ items | superscript_numerals }}</div>
+				<div class="bib-entries">{{ items | typograph }}</div>
 			</div>
 		{% endif %}
 	{% endfor %}

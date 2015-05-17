@@ -1,7 +1,9 @@
 module Jekyll
   module BibliographyFilter
-    def superscript_numerals(input)
+    def typograph(input)
 	  input.gsub!(/([0-9])(th|st|nd|rd)\b/, '\1<sup>\2</sup>')
+	  input.gsub!(/(Т|С|Vol|Вып). ([0-9])/, '\1.&nbsp;\2')
+	  input.gsub!(/(№) ([0-9])/, '\1&nbsp;\2')
 	  input
     end
 	def escape_liquid(input)

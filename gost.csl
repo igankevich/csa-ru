@@ -58,8 +58,7 @@
   <macro name="publisher">
     <group>
       <text variable="publisher-place"/>
-      <text value=": "/>
-      <text variable="publisher"/>
+	  <text variable="publisher" prefix=": "/>
     </group>
     <text macro="year-date" suffix="." prefix=", "/>
     <text variable="edition" prefix=" Вып. "/>

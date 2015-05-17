@@ -8,7 +8,7 @@ permalink: /activities/workshops/
 	<div class="year-container">
 		<div class="date-label">{{ w.startDate | append: ' ' | append: w.endDate | dates }}</div>
 		<div class="bib-entries">
-			<div class="title">{{ w.title | superscript_numerals }}</div>
+			<div class="title">{{ w.title | typograph }}</div>
 			<div class="place">{{ w.place }}</div>
 			<div><a href="{{ w.url }}">{% t links.workshop %}</a></div>
 		</div>
