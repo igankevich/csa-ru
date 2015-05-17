@@ -2,30 +2,30 @@
 <head>
 <link href="images/ch.css" rel=stylesheet type=text/css>
 <META content="text/html; charset=windows-1251" http-equiv=Content-Type>
-<title>жПТХН</title>
+<title>Р¤РѕСЂСѓРј</title>
 <!-- Main dropdown code -->
 <SCRIPT language=JavaScript>
 
 function sendform() {
 
 if (document.MyForm.name.value == "") {
-    alert('рПЦБМХКУФБ, ЧЧЕДЙФЕ чБЫЕ ЙНС');
+    alert('РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РІРІРµРґРёС‚Рµ Р’Р°С€Рµ РёРјСЏ');
     document.MyForm.name.focus();
     return false;
     }
 
 if (document.MyForm.email.value == "") {
-    alert('рПЦБМХКУФБ, ЧЧЕДЙФЕ чБЫ ЬМЕЛФТПООЩК БДТЕУ');
+    alert('РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РІРІРµРґРёС‚Рµ Р’Р°С€ СЌР»РµРєС‚СЂРѕРЅРЅС‹Р№ Р°РґСЂРµСЃ');
     document.MyForm.email.focus();
     return false;
     }
 if (document.MyForm.theme.value == "") {
-    alert('рПЦБМХКУФБ, ХЛБЦЙФЕ ФЕНХ');
+    alert('РџРѕР¶Р°Р»СѓР№СЃС‚Р°, СѓРєР°Р¶РёС‚Рµ С‚РµРјСѓ');
     document.MyForm.theme.focus();
     return false;
     }
 if (document.MyForm.text.value == "") {
-    alert('рПЦБМХКУФБ, ОБРЙЫЙФЕ ЮФП-ОЙВХДШ');
+    alert('РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РЅР°РїРёС€РёС‚Рµ С‡С‚Рѕ-РЅРёР±СѓРґСЊ');
     document.MyForm.text.focus();
     return false;
     }
@@ -40,7 +40,7 @@ return true;
 <body style="MARGIN: 0px" text=#000000 vLink=#666666 aLink=#ff0000 link=#003399 
 bgColor=#ffffff MARGINHEIGHT="0" MARGINWIDTH="0">
 <center>
-<a class=forum_small href="index.html">дЕФУЛБС РБФПРУЙИПМПЗЙС</a>
+<a class=forum_small href="index.html">Р”РµС‚СЃРєР°СЏ РїР°С‚РѕРїСЃРёС…РѕР»РѕРіРёСЏ</a>
 <br><p>
 <table width="750" cellspacing="0" cellpadding="0" border="0" bordercolor="Black">
 <tr>
