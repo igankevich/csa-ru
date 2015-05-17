@@ -1,8 +1,9 @@
 DONE [] Get books from http://www.apmath.spbu.ru/ru/staff/stankova/index.html.
+DONE [] Fix /children encoding.
 
 HTML & CSS validator.
 Schema.org WebPage, SearchResultsPage, AboutPage, Book, Article etc. + CollectionPage, ItemPage
-Fix /children encoding.
 
 OpenGraph, Twitter Cards, author meta tags.
 Fix nu validator warnings.
+Patents.
