@@ -18,6 +18,8 @@ titles:
   grants: Grants
   stub: The page is under construction. Please, come back later.
   journals: Journals
+  children: children.csa.ru
+  projects: Projects
 bib:
   annotation: Annotation
   howpublished: URL

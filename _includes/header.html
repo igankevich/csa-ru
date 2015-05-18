@@ -37,7 +37,11 @@
 							{% assign submenus = site.data.menu[forloop.index0].sub %}
 							<ul class="submenu">
 							{% for i in submenus %}
-								{% assign url = site.baseurl | append: p.url | append: i.url | append: '/' %}
+								{% if i.long_url %}
+									{% assign url = i.long_url %}
+								{% else %}
+									{% assign url = site.baseurl | append: p.url | append: i.url | append: '/' %}
+								{% endif %}
 								<li class="submenu-item">
 									{% if url == page.url %}
 										<a>{% t i.title %}</a>

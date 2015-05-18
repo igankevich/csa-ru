@@ -6,6 +6,7 @@ url: http://csa.ru
 encoding: utf-8
 markdown: kramdown
 highlighter: pygments
+baseurl: "/qqq"
 
 # multilingual pages
 languages: ["ru", "en"]

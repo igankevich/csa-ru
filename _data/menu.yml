@@ -9,6 +9,8 @@
      url: /inbook
    - title: bib.misc
      url: /misc
+   - title: titles.books
+     url: /books
 - title: titles.theses
   url: /theses
   sub:
@@ -29,8 +31,13 @@
      url: /conferences
    - title: titles.journals
      url: /journals
-- title: titles.books
-  url: /books
+- title: titles.projects
+  url: /projects
+  sub:
+   - title: titles.children
+     long_url: http://children.csa.ru
+   - title: titles.grants
+     url: /grants
 - title: titles.search
   url: /search
 - title: titles.about
@@ -38,7 +45,5 @@
   sub:
    - title: titles.apmath
      url: /apmath
-   - title: titles.grants
-     url: /grants
 - title: titles.language
   url: /language

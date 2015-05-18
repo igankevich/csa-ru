@@ -1,5 +1,5 @@
 titles:
-  books: Учебные пособия
+  books: Книги
   about: О нас
   bibliography: Все публикации
   table: Таблица
@@ -18,6 +18,8 @@ titles:
   grants: Гранты
   stub: Страница находится в разработке и в скором времени будет обновлена.
   journals: Журналы
+  children: children.csa.ru
+  projects: Проекты
 bib:
   annotation: Аннотация
   howpublished: Ссылка
