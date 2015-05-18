@@ -13,3 +13,4 @@ Meta description for all pages.
 Presentations.
 Convert theses to HTML pages (pandoc).
 Tutorials (javascript promises etc.)
+Read BibTeX files in _bibliography automatically.
