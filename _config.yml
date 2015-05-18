@@ -16,7 +16,8 @@ exclude: ["bin", "Gemfile", "Gemfile.lock", "TODO", "gost.csl", "Makefile", "raw
 
 # compress and cache JS and CSS files preserving copyright
 assets:
-  js_compressor: uglifier_with_copyright
+#  js_compressor: uglifier_with_copyright
+  js_compressor: ~
   css_compressor: sass
   gzip: false
   cache: true

@@ -2,6 +2,7 @@ var modelist = ace.require("ace/ext/modelist")
 var github
 var repo
 var editor
+var root
 $(function () {
     editor = ace.edit("editor");
     editor.setTheme("ace/theme/twilight");
@@ -46,13 +47,24 @@ $(function () {
 		.on('move_node.jstree', function (e, obj) {
 			console.log('Move node')
 			console.log(obj)
+			var func = function(p, n) { return (p ? p + '/' : '') + n }
+			var from = func(root.get_node(obj.old_parent).data.path, obj.node.data.name)
+			var to = func(root.get_node(obj.parent).data.path, obj.node.data.name)
+			if (from != to) {
+				console.log('Moving file from ' + from + ' to ' + to)
+				repo.move('master', from, to, function (err) {
+					console.log('Error moving file from ' + from + ' to ' + to)
+					console.log(err)
+					root.refresh()
+				})
+			}
 		})
 		.jstree({
 			core: {
 				data: function (node, callback) {
 					console.log('Node')
 					console.log(node)
-					repo.contents('master', './' + (node.data ? node.data.path : ''), function(err, contents) {
+					repo.contents('master', (node.data ? node.data.path : ''), function(err, contents) {
 						console.log('Error')
 						console.log(err);
 						console.log('Contents')
@@ -81,5 +93,9 @@ $(function () {
 				icons: true
 			}
 		})
+		root = $('#root').jstree(true)
+		root.get_node('#').data = {
+			path: ''
+		}
 	});
 })

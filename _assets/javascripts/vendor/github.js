@@ -462,7 +462,7 @@
             "message": message,
             "author": {
               "name": options.user,
-              "email": userData.email
+              "email": userData.email || 'web@github.js'
             },
             "parents": [
               parent
@@ -640,12 +640,14 @@
         updateTree(branch, function(err, latestCommit) {
           that.getTree(latestCommit+"?recursive=true", function(err, tree) {
             // Update Tree
-            _.each(tree, function(ref) {
+//			var newTree = _.reject(tree, function (ref) { return ref.type === 'tree'; })
+			var newTree = tree
+            _.each(newTree, function(ref) {
               if (ref.path === path) ref.path = newPath;
-              if (ref.type === "tree") delete ref.sha;
+//              if (ref.type === "tree") delete ref.sha;
             });
 
-            that.postTree(tree, function(err, rootTree) {
+            that.postTree(newTree, function(err, rootTree) {
               that.commit(latestCommit, rootTree, 'Deleted '+path , function(err, commit) {
                 that.updateHead(branch, commit, function(err) {
                   cb(err);
