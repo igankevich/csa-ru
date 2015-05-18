@@ -12,7 +12,7 @@ baseurl: "/qqq"
 languages: ["ru", "en"]
 exclude_from_localizations: ["analitik", "children", "bin", "raw-papers"]
 
-exclude: ["bin", "Gemfile", "Gemfile.lock", "TODO", "gost.csl", "Makefile", "raw-papers"]
+exclude: ["bin", "Gemfile", "Gemfile.lock", "TODO", "gost.csl", "Makefile", "raw-papers", "requirements.txt"]
 
 # compress and cache JS and CSS files preserving copyright
 assets:
