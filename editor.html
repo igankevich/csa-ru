@@ -1,0 +1,27 @@
+---
+layout: page
+permalink: /editor/
+head: editor-head.html
+---
+
+<form id="form" onsubmit="return false" action="https://api.github.com">
+	<input type="text" name="username" value="igankevich">
+	<br>
+	<input type="password" name="password" value="">
+	<br>
+	<input type="submit" value="submit" id="input">
+</form>
+
+<div id="root" style="display:inline-block;vertical-align:top;width:45%;">
+</div>
+<pre id="editor" style="display:inline-block;width:50%;height:500px;">
+function hello() {
+	console.log('hello')
+}
+</pre>
+
+{% javascript vendor/github type="text/javascript" %}
+{% javascript vendor/jstree type="text/javascript" %}
+{% javascript vendor/ace/ace type="text/javascript" %}
+{% javascript vendor/ace/ext-modelist type="text/javascript" %}
+{% javascript editor type="text/javascript" %}
