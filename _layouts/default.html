@@ -9,13 +9,19 @@ layout: compress
 	{% else %}
 	    {% assign page_itemtype = "http://schema.org/WebPage" %}
 	{% endif %}
-	<body itemscope itemtype="{{ page_itemtype }}">
-		{% include header.html %}
-		<div class="page-content">
-			<div class="wrapper">
-				{{ content }}
+	{% if page.naked %}
+		<body itemscope itemtype="{{ page_itemtype }}">
+			{{ content }}
+		</body>
+	{% else %}
+		<body itemscope itemtype="{{ page_itemtype }}">
+			{% include header.html %}
+			<div class="page-content">
+				<div class="wrapper">
+					{{ content }}
+				</div>
 			</div>
-		</div>
-		{% include footer.html %}
-	</body>
+			{% include footer.html %}
+		</body>
+	{% endif %}
 </html>

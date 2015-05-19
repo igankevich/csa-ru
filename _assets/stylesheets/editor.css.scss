@@ -1,0 +1,36 @@
+.editor {
+	display: inline-block;
+	vertical-align: top;
+	width: 80%;
+	height: 100%;
+	margin-bottom: -37px;
+}
+
+.files {
+	display: inline-block;
+	vertical-align: top;
+	width: 20%;
+	height: 100%;
+	overflow-y: auto;
+	margin: 0px;
+}
+
+
+* {
+	margin: 0;
+}
+
+html, body {
+	height: 100%;
+}
+
+.sticky-wrapper {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -4em;
+}
+
+.sticky-footer, .sticky-push {
+	height: 4em;
+}

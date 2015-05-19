@@ -35,7 +35,12 @@ bib:
 buttons:
   showall: Показать все
   search: Найти
+  saveFile: Сохранить
+  login: Войти
 search:
   placeholder: "введите ключевые слова, например, “многосеточные”"
 links:
   workshop: Страница семинара
+forms:
+  username: Имя пользователя
+  password: Пароль

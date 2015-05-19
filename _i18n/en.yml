@@ -35,7 +35,12 @@ bib:
 buttons:
   showall: Show all
   search: Search
+  saveFile: Save
+  login: Log in
 search:
   placeholder: "enter keywords, e.g. “OpenCL”"
 links:
   workshop: More...
+forms:
+  username: User name
+  password: Password
