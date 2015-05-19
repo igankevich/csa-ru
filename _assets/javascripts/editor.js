@@ -43,6 +43,19 @@ function parseQueryString() {
     });
     return map;
 }
+function navigateToFile(file, level) {
+	var comp = file.split('/')
+	if (level < comp.length) {
+		var path = comp.slice(0, level + 1).join('/')
+		var node = root.get_node(path)
+		console.log('Loading ' + path)
+		root.open_node(node, function (n, st) {
+			console.log('Loaded')
+			console.log(n)
+			console.log(st)
+		})
+	}
+}
 function saveCredentials(username, passw) {
 	localStorage['github.username'] = username
 	localStorage['github.password'] = passw
@@ -188,6 +201,15 @@ $(function () {
 						unlock()
 					});
 				}
+			}
+		})
+		.on('loaded.jstree', function (e, obj) {
+			var file = parseQueryString().file
+			console.log('File=')
+			console.log(parseQueryString())
+			console.log(file)
+			if (file) {
+				navigateToFile(file[0], 0);
 			}
 		})
 		.on('move_node.jstree', function (e, obj) {
