@@ -8,6 +8,7 @@ naked: true
 <div class="sticky-wrapper">
 	<div id="toolbar" class="ui-widget-header">
 		<button id="save">{% t buttons.saveFile %}</button>
+		<div id="progress-bar"></div>
 	</div>
 	<div id="root" class="files"> </div>
 	<div id="editor" class="editor" style="position:fixed;"> </div>
@@ -28,6 +29,13 @@ naked: true
 			<input type="submit" value="{% t buttons.login %}">
 		</fieldset>
 	</form>
+</div>
+
+<div id="confirm-save" title="Dow you want to save the file?">
+	<p>
+		<span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>
+		Dow you want to save the file?
+	</p>
 </div>
 
 {% javascript vendor/jquery-ui type="text/javascript" %}

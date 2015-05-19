@@ -3,17 +3,46 @@ var repo
 var editor
 var root
 var makePath = function(p, n) { return (p ? p + '/' : '') + n }
-var move = function(from, to) {
+var move = function(from, to, is_dir) {
 	if (from != to) {
 		console.log('Moving file from ' + from + ' to ' + to)
-		repo.move('master', from, to, function (err) {
-			console.log('Error moving file from ' + from + ' to ' + to)
-			console.log(err)
-			root.refresh()
-		})
+		if (is_dir) {
+			lock('Moving directory...')
+			repo.moveDir('master', from, to, function (err) {
+				if (err) {
+					console.log('Error moving directory from ' + from + ' to ' + to)
+					console.log(err)
+				}
+				root.refresh()
+				unlock()
+			})
+		} else {
+			lock('Moving file...')
+			repo.move('master', from, to, function (err) {
+				if (err) {
+					console.log('Error moving file from ' + from + ' to ' + to)
+					console.log(err)
+				}
+				root.refresh()
+				unlock()
+			})
+		}
 	}
 }
 var loginForm
+var fileWasModified = false
+var selectedNode
+var lockAllFiles = false
+var progressBar
+var editorState = {}
+function parseQueryString() {
+    var query = (location.search || '?').substr(1),
+        map   = {};
+    query.replace(/([^&=]+)=?([^&]*)(?:&+|$)/g, function(match, key, value) {
+        (map[key] = map[key] || []).push(value);
+    });
+    return map;
+}
 function saveCredentials(username, passw) {
 	localStorage['github.username'] = username
 	localStorage['github.password'] = passw
@@ -26,8 +55,57 @@ function restoreCreds(username, passw) {
 	}
 	return false
 }
+function lock(text) {
+	lockAllFiles = true
+	if (!progressBar) {
+		progressBar = $('#progress-bar').progressbar({value: false})
+	} else {
+		progressBar.show()
+	}
+}
+function unlock() {
+	$('#progress-bar').hide()
+	lockAllFiles = false
+}
+function saveFile() {
+	if (selectedNode && fileWasModified) {
+		var dir = root.get_node(selectedNode.parent)
+		var filePath = selectedNode.data.path
+		var fileContents = editor.getValue()
+		lock('Saving file...')
+		repo.write('master', filePath, fileContents, 'Edited ' + filePath, function (err) {
+			root.refresh_node(dir)
+			unlock()
+			if (err) {
+				console.log('Error editing file ' + filePath)
+				console.log(err)
+			} else {
+				fileWasModified = false
+			}
+		})
+	}
+}
+function saveEditorState() {
+	if (selectedNode) {
+		var filePath = selectedNode.data.path
+		editorState[filePath] = editor.getSelectionRange()
+	}
+}
+function restoreEditorState() {
+	if (selectedNode) {
+		var filePath = selectedNode.data.path
+		var st = editorState[filePath]
+		if (st) {
+			editor.scrollToLine(st.start.row, true, false, function () {});
+			editor.gotoLine(st.start.row+1, st.start.column)
+		} else {
+			editor.gotoLine(1)
+		}
+	}
+}
 $(function () {
 	$('button').button()
+	$('#save').click(saveFile)
 	loginForm = $('#login-form').dialog({
 		autoOpen: false,
 		height: 300,
@@ -35,10 +113,22 @@ $(function () {
 		modal: true
 	})
 	loginForm.dialog('open')
-    editor = ace.edit("editor");
-    editor.setTheme("ace/theme/github");
-    editor.setFontSize(16);
-    editor.getSession().setMode("ace/mode/text");
+	confirmSave = $('#confirm-save').dialog({
+		autoOpen: false,
+		resizable: false,
+		height: 240,
+		modal: true,
+		buttons: {
+			"Save file": function() {
+				console.log('Saving file')
+				saveFile()
+				$(this).dialog("close");
+			},
+			Cancel: function() {
+				$(this).dialog("close");
+			}
+		}
+	})
 	$('#form').submit(function (e) {
 		loginForm.dialog('close')
 		console.log("QQ");
@@ -63,20 +153,41 @@ $(function () {
 		$('#root').on('activate_node.jstree', function (e, obj) {
 			if (obj.node.data.type === 'file') {
 				var filePath = obj.node.data.path
-				repo.read('master', filePath, function(err, data) {
-					if (!err) {
-						var mode = modelist.getModeForPath(filePath).mode
-						if (mode) {
-							editor.session.setMode(mode)
+				if (fileWasModified) {
+					confirmSave.dialog('open')
+				} else {
+					lock('Reading file...')
+					saveEditorState()
+					repo.read('master', filePath, function(err, data) {
+						if (!err) {
+							if (!editor) {
+							    editor = ace.edit("editor");
+							    editor.setTheme("ace/theme/github");
+							    editor.setFontSize(16);
+							    editor.getSession().setMode("ace/mode/text");
+								$("#editor").resizable();
+							}
+							var mode = modelist.getModeForPath(filePath).mode
+							if (mode) {
+								editor.session.setMode(mode)
+							} else {
+    							editor.getSession().setMode("ace/mode/text");
+							}
+							editor.setValue(data)
+							editor.clearSelection()
+							fileWasModified = false
+							editor.on('change', function (e) {
+								fileWasModified = true
+							})
+							editor.focus()
+							selectedNode = obj.node
+							restoreEditorState()
 						} else {
-    						editor.getSession().setMode("ace/mode/text");
+							console.log('Error: ' + err)
 						}
-						editor.setValue(data)
-						editor.clearSelection()
-					} else {
-						console.log('Error: ' + err)
-					}
-				});
+						unlock()
+					});
+				}
 			}
 		})
 		.on('move_node.jstree', function (e, obj) {
@@ -89,7 +200,7 @@ $(function () {
 			}
 			var from = makePath(old_dir.data.path, obj.node.data.name)
 			var to = makePath(new_dir.data.path, obj.node.data.name)
-			move(from, to)
+			move(from, to, obj.node.data.type === 'dir')
 		})
 		.on('rename_node.jstree', function (e, obj) {
 			if (obj.node.data.sha) {
@@ -97,18 +208,25 @@ $(function () {
 				var dir = root.get_node(obj.node.parent)
 				var from = makePath(dir.data.path, obj.old)
 				var to = makePath(dir.data.path, obj.text)
-				move(from, to)
+				move(from, to, obj.node.data.type === 'dir')
 			} else {
-				// new file
-				var dir = root.get_node(obj.node.parent)
-				var filePath = makePath(dir.data.path, obj.text)
-				repo.write('master', filePath, '', 'Created ' + filePath, function (err) {
-					root.refresh_node(dir)
-					if (err) {
-						console.log('Error creating file ' + filePath)
-						console.log(err)
-					}
-				})
+				if (obj.node.data.type === 'dir') {
+					var to = makePath(dir.data.path, obj.text)
+					obj.node.data.path = to
+				} else {
+					// new file
+					var dir = root.get_node(obj.node.parent)
+					var filePath = makePath(dir.data.path, obj.text)
+					lock('Creating file...')
+					repo.write('master', filePath, '', 'Created ' + filePath, function (err) {
+						root.refresh_node(dir)
+						unlock()
+						if (err) {
+							console.log('Error creating file ' + filePath)
+							console.log(err)
+						}
+					})
+				}
 			}
 		})
 		.on('delete_node.jstree', function (e, obj) {
@@ -116,16 +234,20 @@ $(function () {
 			var filePath = obj.node.data.path
 			if (obj.node.data.type === 'dir') {
 				console.log('Removing dir ' + filePath)
+				lock('Removing directory...')
 				repo.removeDir('master', filePath, function (err) {
 					root.refresh_node(dir)
+					unlock()
 					if (err) {
 						console.log('Error removing directory ' + filePath)
 						console.log(err)
 					}
 				})
 			} else {
+				lock('Removing file...')
 				repo.remove('master', filePath, function (err) {
 					root.refresh_node(dir)
+					unlock()
 					if (err) {
 						console.log('Error removing file ' + filePath)
 						console.log(err)
@@ -164,29 +286,40 @@ $(function () {
 				data: function (node, callback) {
 					console.log('Node')
 					console.log(node)
-					repo.contents('master', (node.data ? node.data.path : ''), function(err, contents) {
-						console.log('Error')
-						console.log(err);
-						console.log('Contents')
-						console.log(contents)
-						var nodes = $.map(contents, function (val) {
-							return {
-								text: val.name,
-								children: val.type == 'dir',
-								data: val,
-								icon: '/qqq/assets/jstree/' + (val.type == 'dir' ? 'folder.png' : 'file.png')
-							}
+					if (!(node.data && node.data.tmp)) {
+						repo.contents('master', (node.data ? node.data.path : ''), function(err, contents) {
+							console.log('Error')
+							console.log(err);
+							console.log('Contents')
+							console.log(contents)
+							var nodes = $.map(contents, function (val) {
+								return {
+									text: val.name,
+									children: val.type == 'dir',
+									data: val,
+									icon: '/qqq/assets/jstree/' + (val.type == 'dir' ? 'folder.png' : 'file.png')
+								}
+							})
+							console.log('Nodes')
+							console.log(nodes)
+							callback(nodes)
 						})
-						console.log('Nodes')
-						console.log(nodes)
-						callback(nodes)
-					})
+					} else {
+						callback([])
+					}
 				},
 				check_callback: function (op, node, par) {
-					return par.data && par.data.type === 'dir'
+					return !lockAllFiles && (par.data && par.data.type === 'dir')
 				}
 			},
-			plugins: ["unique", "wholerow", "dnd", "contextmenu"],
+			plugins: ["unique", "wholerow", "dnd", "contextmenu", 'sort'],
+			sort: function (a, b) {
+				var x = root.get_node(a)
+				var y = root.get_node(b)
+				return x.data && x.data.type && x.data.type !== y.data.type
+					? x.data.type.localeCompare(y.data.type)
+					: x.text.localeCompare(y.text)
+			},
 			contextmenu: {
 				items: function (par) {
 					console.log('Parent')
@@ -222,7 +355,8 @@ $(function () {
 									children: true,
 									data: {
 										path: makePath(parent.data.path, fileName),
-										type: 'dir'
+										type: 'dir',
+										tmp: true
 									}
 								}
 		                        root.create_node(parent, node, "last", function (new_node) {

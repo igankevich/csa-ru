@@ -34,3 +34,14 @@ html, body {
 .sticky-footer, .sticky-push {
 	height: 4em;
 }
+
+#progress-bar {
+	display: inline-block;
+	width: 33%;
+	height: 30px;
+	float: right;
+}
+
+#toolbar {
+	vertical-align: top;
+}

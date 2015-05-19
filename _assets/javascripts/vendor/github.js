@@ -654,6 +654,33 @@
         });
 	  }
 
+      // Move a directory to a new location
+      // -------
+
+      this.moveDir = function(branch, path, newPath, cb) {
+        updateTree(branch, function(err, latestCommit) {
+          that.getTree(latestCommit+"?recursive=true", function(err, tree) {
+            // Update Tree
+			var newTree = _.reject(tree, function (ref) { return ref.type === 'tree'; })
+            _.each(newTree, function(ref) {
+              if (ref.path === path) ref.path = newPath;
+			  if (path && ref.path.indexOf(path) === 0) {
+			    ref.path = ref.path.replace(new RegExp('^' + path), newPath);
+			  }
+//              if (ref.type === "tree") delete ref.sha;
+            });
+
+            that.postTree(newTree, function(err, rootTree) {
+              that.commit(latestCommit, rootTree, 'Deleted '+path , function(err, commit) {
+                that.updateHead(branch, commit, function(err) {
+                  cb(err);
+                });
+              });
+            });
+          });
+        });
+      };
+
       // Move a file to a new location
       // -------
 
