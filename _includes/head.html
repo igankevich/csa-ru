@@ -42,6 +42,8 @@
 	{% stylesheet main %}
 	{% javascript vendor/modernizr type="text/javascript" %}
 	{% javascript vendor/jquery type="text/javascript" %}
+	{% javascript admin type="text/javascript" %}
+	<script src="{{ site.baseurl }}/assets/site.js" type="text/javascript"></script>
 	{% if page.head %}
 		{% include {{page.head}} %}
 	{% endif %}

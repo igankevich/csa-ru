@@ -43,17 +43,71 @@ function parseQueryString() {
     });
     return map;
 }
-function navigateToFile(file, level) {
+function navigateToFile(file, level, par) {
+	if (typeof level == 'undefined') { level = 0 }
+	if (!par) { par = root.get_node('#') }
 	var comp = file.split('/')
 	if (level < comp.length) {
-		var path = comp.slice(0, level + 1).join('/')
-		var node = root.get_node(path)
-		console.log('Loading ' + path)
-		root.open_node(node, function (n, st) {
-			console.log('Loaded')
-			console.log(n)
-			console.log(st)
+		console.log('Parent')
+		console.log(par)
+		var nodeId = _.find(par.children, function (childId) {
+			return root.get_node(childId).text == comp[level]
 		})
+		var node = root.get_node(nodeId)
+		if (node.data && node.data.type === 'file') {
+			console.log('Selecting ' + comp[level])
+			console.log('Selecting ' + nodeId)
+			root.select_node(nodeId)
+			openFile(node)
+		} else {
+			console.log('Loading ' + comp[level] + ', nodeId = ' + nodeId)
+			root.open_node(node, function (n, st) {
+				console.log('Loaded')
+				console.log(n)
+				console.log(st)
+//				var path = comp.slice(0, level + 1).join('/')
+				navigateToFile(file, level + 1, n)
+			}, false)
+		}
+	}
+}
+function openFile(node) {
+	if (node.data.type === 'file') {
+		var filePath = node.data.path
+		if (fileWasModified) {
+			confirmSave.dialog('open')
+		} else {
+			lock('Reading file...')
+			saveEditorState()
+			repo.read('master', filePath, function(err, data) {
+				if (!err) {
+					if (!editor) {
+					    editor = ace.edit("editor");
+					    editor.setTheme("ace/theme/github");
+					    editor.setFontSize(16);
+					    editor.getSession().setMode("ace/mode/text");
+						editor.on('change', function (e) {
+							fileWasModified = true
+						})
+					}
+					var mode = modelist.getModeForPath(filePath).mode
+					if (mode) {
+						editor.session.setMode(mode)
+					} else {
+    					editor.getSession().setMode("ace/mode/text");
+					}
+					editor.setValue(data)
+					editor.clearSelection()
+					fileWasModified = false
+					editor.focus()
+					selectedNode = node
+					restoreEditorState()
+				} else {
+					console.log('Error: ' + err)
+				}
+				unlock()
+			});
+		}
 	}
 }
 function saveCredentials(username, passw) {
@@ -164,44 +218,7 @@ $(function () {
 			console.log(repo);
 		});
 		$('#root').on('activate_node.jstree', function (e, obj) {
-			if (obj.node.data.type === 'file') {
-				var filePath = obj.node.data.path
-				if (fileWasModified) {
-					confirmSave.dialog('open')
-				} else {
-					lock('Reading file...')
-					saveEditorState()
-					repo.read('master', filePath, function(err, data) {
-						if (!err) {
-							if (!editor) {
-							    editor = ace.edit("editor");
-							    editor.setTheme("ace/theme/github");
-							    editor.setFontSize(16);
-							    editor.getSession().setMode("ace/mode/text");
-								$("#editor").resizable();
-							}
-							var mode = modelist.getModeForPath(filePath).mode
-							if (mode) {
-								editor.session.setMode(mode)
-							} else {
-    							editor.getSession().setMode("ace/mode/text");
-							}
-							editor.setValue(data)
-							editor.clearSelection()
-							fileWasModified = false
-							editor.on('change', function (e) {
-								fileWasModified = true
-							})
-							editor.focus()
-							selectedNode = obj.node
-							restoreEditorState()
-						} else {
-							console.log('Error: ' + err)
-						}
-						unlock()
-					});
-				}
-			}
+			openFile(obj.node)
 		})
 		.on('loaded.jstree', function (e, obj) {
 			var file = parseQueryString().file
@@ -209,7 +226,7 @@ $(function () {
 			console.log(parseQueryString())
 			console.log(file)
 			if (file) {
-				navigateToFile(file[0], 0);
+				navigateToFile(file[0]);
 			}
 		})
 		.on('move_node.jstree', function (e, obj) {
@@ -319,7 +336,7 @@ $(function () {
 									text: val.name,
 									children: val.type == 'dir',
 									data: val,
-									icon: '/qqq/assets/jstree/' + (val.type == 'dir' ? 'folder.png' : 'file.png')
+									icon: site.baseurl_root + '/assets/jstree/' + (val.type == 'dir' ? 'folder.png' : 'file.png')
 								}
 							})
 							console.log('Nodes')
@@ -354,7 +371,7 @@ $(function () {
 								var fileName = "newfile-" + new Date().getTime()
 								var node = {
 									text: fileName,
-									icon: '/qqq/assets/jstree/file.png',
+									icon: site.baseurl_root + '/assets/jstree/file.png',
 									children: false,
 									data: {
 										path: makePath(parent.data.path, fileName),
@@ -373,7 +390,7 @@ $(function () {
 								var fileName = "newdir-" + new Date().getTime()
 								var node = {
 									text: fileName,
-									icon: '/qqq/assets/jstree/folder.png',
+									icon: site.baseurl_root + '/assets/jstree/folder.png',
 									children: true,
 									data: {
 										path: makePath(parent.data.path, fileName),

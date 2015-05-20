@@ -2,7 +2,16 @@
 
 	<div class="wrapper">
 	
-		<a class="site-title" href="{{ site.baseurl }}/">{{ site.title }}</a>
+		<table class="grid1x2">
+			<tr>
+				<td>
+					<a class="site-title" href="{{ site.baseurl }}/">{{ site.title }}</a>
+				</td>
+				<td>
+					<a class="admin" href="{{ site.baseurl_root }}/editor/?file={{ page.path }}">{% t links.edit %}</a>
+				</td>
+			</tr>
+		</table>
 
 		<nav class="site-nav">
 

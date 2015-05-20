@@ -22,6 +22,27 @@
     }
 }
 
+.admin {
+	display: none;
+}
+
+.grid1x2 {
+
+	position: relative;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+
+	td {
+		margin: 0px;
+		padding: 0px;
+
+		&:nth-child(even) {
+			text-align: right;
+		}
+	}
+}
+
 .site-nav {
 	display: block;
     line-height: 56px;

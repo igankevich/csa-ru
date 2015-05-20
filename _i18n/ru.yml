@@ -41,6 +41,7 @@ search:
   placeholder: "введите ключевые слова, например, “многосеточные”"
 links:
   workshop: Страница семинара
+  edit: Редактировать
 forms:
   username: Имя пользователя
   password: Пароль
