@@ -1,3 +1,4 @@
+# encoding: utf-8
 module Jekyll
   module BibliographyFilter
     def typograph(input)
