@@ -1,3 +1,4 @@
+var REPO_NAME = 'csa-ru'
 var modelist = ace.require("ace/ext/modelist")
 var repo
 var editor
@@ -212,7 +213,7 @@ $(function () {
 			password: password,
 			auth: 'basic'
 		});	
-		repo = github.getRepo(username, 'igankevich');
+		repo = github.getRepo(username, REPO_NAME);
 		repo.show(function(err, repo) {
 			console.log(err);
 			console.log(repo);

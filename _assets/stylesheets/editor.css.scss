@@ -4,15 +4,17 @@
 	width: 80%;
 	height: 100%;
 	margin-bottom: -37px;
+	margin-left: 20%;
+	position: fixed;
 }
 
 .files {
 	display: inline-block;
 	vertical-align: top;
 	width: 20%;
-	height: 100%;
+	height: calc(100% - 37px);
 	overflow-y: auto;
-	margin: 0px;
+	position: fixed;
 }
 
 
