@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#bundle install
-#pip install -r requirements.txt --user $USER
-#jekyll build
+bundle install
+pip install -r requirements.txt --user $USER
+jekyll build
 node ./bin/index.js
