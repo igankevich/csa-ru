@@ -1,14 +1,6 @@
 #!/bin/sh
 
-mkdir -p $HOME/.ssh
-mv /tmp/id_rsa $HOME/.ssh/id_rsa
-mv bin/id_rsa.pub $HOME/.ssh/id_rsa.pub
-echo 'StrictHostKeyChecking no' > $HOME/.ssh/config
-chmod 700 $HOME/.ssh
-chmod 600 $HOME/.ssh/config
-chmod 600 $HOME/.ssh/id_rsa
-chmod 644 $HOME/.ssh/id_rsa.pub
-
+sshpass -p "$CSA_PASS" \
 rsync -Hazvs --delete \
 	_site/ \
 	$CSA_USER@csa.ru:/var/opt/csw/nginx/joomla/qqq/
