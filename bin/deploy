@@ -1,3 +1,5 @@
 #!/bin/sh
 
-rsync -Hazvs --delete _site/ $CSA_USER:$CSA_PASS@csa.ru:/var/opt/csw/nginx/joomla/qqq/
+echo "$CSA_PASS" >qqq.txt
+rsync -Hazvs --delete --password-file=qqq.txt _site/ $CSA_USER@csa.ru:/var/opt/csw/nginx/joomla/qqq/
+rm -f qqq.txt
