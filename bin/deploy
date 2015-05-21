@@ -1,0 +1,3 @@
+#!/bin/sh
+
+rsync -Hazvs --delete _site/ $CSA_USER:$CSA_PASS@csa.ru:/var/opt/csw/nginx/joomla/qqq/
