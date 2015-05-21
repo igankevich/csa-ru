@@ -87,6 +87,7 @@ function openFile(node) {
 					    editor.setTheme("ace/theme/github");
 					    editor.setFontSize(16);
 					    editor.getSession().setMode("ace/mode/text");
+					    editor.getSession().setUseWrapMode(true);
 						editor.on('change', function (e) {
 							fileWasModified = true
 						})
