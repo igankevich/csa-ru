@@ -2,5 +2,6 @@
 
 sshpass -p "$CSA_PASS" \
 rsync -Hazvs --delete \
+	--checksum \
 	_site/ \
 	$CSA_USER@csa.ru:/var/opt/csw/nginx/joomla/qqq/
