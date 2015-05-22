@@ -1,0 +1,8 @@
+---
+layout: post
+title: Welcome
+---
+
+Welcome to new static site!
+
+![Source code]({{ site.baseurl_root }}/assets/images/src.png)
