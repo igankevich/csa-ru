@@ -16,3 +16,6 @@ Tutorials (javascript promises etc.)
 Read all BibTeX files in _bibliography automatically.
 
 DSpace REST API https://dspace.spbu.ru/rest
+Search replace links.
+Clean ruby dependencies.
+Restrict copy & paste link to content pages only (exclude titles, labels etc.)
